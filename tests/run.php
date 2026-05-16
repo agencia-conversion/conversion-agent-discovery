@@ -1,6 +1,6 @@
 <?php
 define( 'WP_AGENTIC_TESTING', true );
-define( 'AGENT_READINESS_VERSION', '0.1.4' );
+define( 'AGENT_READINESS_VERSION', '0.1.5' );
 define( 'AGENT_READINESS_URL', 'https://example.com/wp-content/plugins/agent-readiness/' );
 define( 'ABSPATH', __DIR__ . '/' );
 
@@ -182,7 +182,7 @@ assert_true( false !== strpos( $llms, 'Content-Signal: ai-train=yes, search=yes,
 ob_start();
 Agent_Readiness_Admin::render_page();
 $admin_absent = ob_get_clean();
-assert_true( false !== strpos( $admin_absent, 'Agent Readiness v0.1.4' ), 'admin footer exposes version' );
+assert_true( false !== strpos( $admin_absent, 'Agent Readiness v0.1.5' ), 'admin footer exposes version' );
 assert_true( false !== strpos( $admin_absent, 'assets/conversion-logo-white.svg' ), 'admin header includes Conversion logo for dark background' );
 assert_true( false !== strpos( $admin_absent, 'assets/conversion-logo.svg' ), 'admin footer includes Conversion logo for light background' );
 assert_true( false !== strpos( $admin_absent, 'https://conversion.ag/' ), 'admin credits Conversion agency URL' );

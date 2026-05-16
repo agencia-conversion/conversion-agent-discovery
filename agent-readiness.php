@@ -3,7 +3,7 @@
  * Plugin Name: Agent Readiness
  * Plugin URI: https://conversion.ag/
  * Description: Agent readiness for WordPress: Markdown negotiation, llms.txt, API catalog, agent skills, and AI content signals.
- * Version: 0.1.4
+ * Version: 0.1.5
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Author: Conversion
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AGENT_READINESS_VERSION', '0.1.4' );
+define( 'AGENT_READINESS_VERSION', '0.1.5' );
 define( 'AGENT_READINESS_FILE', __FILE__ );
 define( 'AGENT_READINESS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'AGENT_READINESS_URL', plugin_dir_url( __FILE__ ) );

@@ -4,7 +4,7 @@ Tags: ai, agents, markdown, llms.txt, robots.txt
 Requires at least: 5.9
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ No. Normal browser and crawler requests continue to receive HTML. Markdown is re
 No. Agent Readiness publishes only real read-only resources. It does not publish an MCP Server Card unless a real MCP server exists.
 
 == Changelog ==
+
+= 0.1.5 =
+* Schedule rewrite flushes after plugin upgrades so third-party sitemap rules remain registered.
 
 = 0.1.4 =
 * Keep third-party WordPress admin notices out of the custom dashboard hero.

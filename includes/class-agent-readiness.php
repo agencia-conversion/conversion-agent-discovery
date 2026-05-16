@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Agent_Readiness {
 	const VERSION_OPTION = 'wp_agentic_version';
+	const FLUSH_OPTION   = 'agent_readiness_needs_rewrite_flush';
 
 	/**
 	 * Boot the plugin.
@@ -26,6 +27,7 @@ class Agent_Readiness {
 		Agent_Readiness_WebMCP::init();
 		Agent_Readiness_Admin::init();
 		add_action( 'init', array( __CLASS__, 'maybe_upgrade' ), 20 );
+		add_action( 'admin_init', array( __CLASS__, 'maybe_flush_rewrite_rules' ) );
 		add_action( 'upgrader_process_complete', array( __CLASS__, 'maybe_flush_after_plugin_update' ), 10, 2 );
 	}
 
@@ -64,9 +66,23 @@ class Agent_Readiness {
 			return;
 		}
 
-		Agent_Readiness_Routes::add_rewrite_rules();
-		flush_rewrite_rules();
 		update_option( self::VERSION_OPTION, AGENT_READINESS_VERSION );
+		update_option( self::FLUSH_OPTION, '1' );
+	}
+
+	/**
+	 * Flush rewrite rules after all init callbacks have registered their rules.
+	 *
+	 * @return void
+	 */
+	public static function maybe_flush_rewrite_rules() {
+		if ( '1' !== get_option( self::FLUSH_OPTION, '' ) ) {
+			return;
+		}
+
+		Agent_Readiness_Routes::add_rewrite_rules();
+		flush_rewrite_rules( false );
+		delete_option( self::FLUSH_OPTION );
 	}
 
 	/**
@@ -92,8 +108,7 @@ class Agent_Readiness {
 			return;
 		}
 
-		Agent_Readiness_Routes::add_rewrite_rules();
-		flush_rewrite_rules();
 		update_option( self::VERSION_OPTION, AGENT_READINESS_VERSION );
+		update_option( self::FLUSH_OPTION, '1' );
 	}
 }

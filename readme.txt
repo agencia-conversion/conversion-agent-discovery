@@ -4,7 +4,7 @@ Tags: ai, agents, markdown, llms.txt, robots.txt
 Requires at least: 5.9
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,9 @@ Features:
 * Content Signals in `robots.txt`.
 * Generated `llms.txt` and `/.well-known/llms.txt`.
 * Generated `/.well-known/api-catalog`.
-* Generated `/.well-known/agent-skills/index.json`.
+* Generated `/.well-known/agent-skills/index.json` and virtual `SKILL.md` files.
+* Read-only WebMCP tool registration for compatible browsers.
+* Public read-only REST endpoints for site search, recent content, single content reads, site context, and contact handoff.
 * Admin settings page with a global kill switch.
 
 WP Agentic does not publish fake OAuth, MCP, A2A, or commerce metadata.
@@ -41,9 +43,16 @@ No. Normal browser and crawler requests continue to receive HTML. Markdown is re
 
 = Does this create an MCP server? =
 
-No. Version 0.1.0 publishes only real read-only resources.
+No. WP Agentic publishes only real read-only resources. It does not publish an MCP Server Card unless a real MCP server exists.
 
 == Changelog ==
+
+= 0.1.1 =
+* Add read-only WebMCP tools.
+* Add public read-only WP Agentic REST endpoints.
+* Update Agent Skills discovery to v0.2 with virtual SKILL.md artifacts and SHA-256 digests.
+* Add Markdown frontmatter and Content-Signal response headers.
+* Add explicit Link headers for agent resources.
 
 = 0.1.0 =
 * Initial release.

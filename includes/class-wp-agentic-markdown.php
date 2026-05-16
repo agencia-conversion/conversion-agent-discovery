@@ -65,7 +65,11 @@ class WP_Agentic_Markdown {
 	 * @return string
 	 */
 	public static function html_to_markdown( $html ) {
-		$html = preg_replace( '#<(script|style|noscript)\b[^>]*>.*?</\1>#is', '', $html );
+		if ( function_exists( 'strip_shortcodes' ) ) {
+			$html = strip_shortcodes( $html );
+		}
+
+		$html = preg_replace( '#<(script|style|noscript|svg|iframe|form|button|nav|header|footer)\b[^>]*>.*?</\1>#is', '', $html );
 		$html = preg_replace( '#<br\s*/?>#i', "\n", $html );
 		$html = preg_replace( '#</p>#i', "\n\n", $html );
 		$html = preg_replace( '#<h1[^>]*>(.*?)</h1>#is', "\n# $1\n\n", $html );
@@ -94,6 +98,45 @@ class WP_Agentic_Markdown {
 		$text = preg_replace( "/\n{3,}/", "\n\n", $text );
 
 		return trim( $text ) . "\n";
+	}
+
+	/**
+	 * Build Markdown for a public post object.
+	 *
+	 * @param WP_Post|int $post Post object or ID.
+	 * @return string
+	 */
+	public static function markdown_for_post( $post ) {
+		$post = get_post( $post );
+		if ( ! $post || 'publish' !== get_post_status( $post ) ) {
+			return '';
+		}
+
+		setup_postdata( $post );
+		$title       = get_the_title( $post );
+		$url         = get_permalink( $post );
+		$description = has_excerpt( $post ) ? get_the_excerpt( $post ) : wp_trim_words( self::plain_text( preg_replace( '#<[^>]+>#', ' ', $post->post_content ) ), 40 );
+		$content     = apply_filters( 'the_content', $post->post_content );
+		$frontmatter = self::frontmatter(
+			array(
+				'title'          => self::plain_text( $title ),
+				'canonical_url'  => esc_url_raw( $url ),
+				'description'    => self::plain_text( $description ),
+				'date_published' => get_the_date( DATE_W3C, $post ),
+				'date_modified'  => get_the_modified_date( DATE_W3C, $post ),
+				'author'         => self::plain_text( get_the_author_meta( 'display_name', (int) $post->post_author ) ),
+				'content_type'   => get_post_type( $post ),
+				'categories'     => self::term_names( $post, 'category' ),
+			)
+		);
+		wp_reset_postdata();
+
+		$markdown  = $frontmatter;
+		$markdown .= '# ' . self::plain_text( $title ) . "\n\n";
+		$markdown .= 'Source: ' . esc_url_raw( $url ) . "\n\n";
+		$markdown .= self::html_to_markdown( $content );
+
+		return $markdown;
 	}
 
 	/**
@@ -167,21 +210,8 @@ class WP_Agentic_Markdown {
 	 */
 	private static function singular_markdown() {
 		$post = get_post();
-		if ( ! $post || 'publish' !== get_post_status( $post ) ) {
-			return '';
-		}
 
-		setup_postdata( $post );
-		$title   = get_the_title( $post );
-		$url     = get_permalink( $post );
-		$content = apply_filters( 'the_content', $post->post_content );
-		wp_reset_postdata();
-
-		$markdown = '# ' . self::plain_text( $title ) . "\n\n";
-		$markdown .= 'Source: ' . esc_url_raw( $url ) . "\n\n";
-		$markdown .= self::html_to_markdown( $content );
-
-		return $markdown;
+		return $post ? self::markdown_for_post( $post ) : '';
 	}
 
 	/**
@@ -206,8 +236,16 @@ class WP_Agentic_Markdown {
 			}
 		}
 
-		$markdown = '# ' . self::plain_text( $title ) . "\n\n";
-		$markdown .= 'Source: ' . esc_url_raw( home_url( add_query_arg( null, null ) ) ) . "\n\n";
+		$url      = esc_url_raw( home_url( add_query_arg( null, null ) ) );
+		$markdown = self::frontmatter(
+			array(
+				'title'         => self::plain_text( $title ),
+				'canonical_url' => $url,
+				'content_type'  => is_search() ? 'search' : ( is_archive() ? 'archive' : 'home' ),
+			)
+		);
+		$markdown .= '# ' . self::plain_text( $title ) . "\n\n";
+		$markdown .= 'Source: ' . $url . "\n\n";
 		$markdown .= empty( $items ) ? "No public content found.\n" : implode( "\n", $items ) . "\n";
 
 		return $markdown;
@@ -247,8 +285,77 @@ class WP_Agentic_Markdown {
 		header( 'Vary: Accept', false );
 		header( 'X-Markdown-Tokens: ' . self::estimate_tokens( $markdown ) );
 		header( 'X-WP-Agentic: 1' );
+		header( 'Content-Signal: ' . WP_Agentic_Settings::content_signal_value() );
 		echo $markdown; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		exit;
+	}
+
+	/**
+	 * Build YAML frontmatter for Markdown responses.
+	 *
+	 * @param array<string,mixed> $data Metadata.
+	 * @return string
+	 */
+	private static function frontmatter( $data ) {
+		$lines = array( '---' );
+
+		foreach ( $data as $key => $value ) {
+			if ( is_array( $value ) ) {
+				if ( empty( $value ) ) {
+					continue;
+				}
+
+				$lines[] = sanitize_key( $key ) . ':';
+				foreach ( $value as $item ) {
+					$lines[] = '  - "' . self::yaml_escape( $item ) . '"';
+				}
+				continue;
+			}
+
+			$value = trim( (string) $value );
+			if ( '' === $value ) {
+				continue;
+			}
+
+			$lines[] = sanitize_key( $key ) . ': "' . self::yaml_escape( $value ) . '"';
+		}
+
+		$lines[] = '---';
+
+		return implode( "\n", $lines ) . "\n\n";
+	}
+
+	/**
+	 * Get term names for frontmatter.
+	 *
+	 * @param WP_Post $post Post.
+	 * @param string  $taxonomy Taxonomy.
+	 * @return array<int,string>
+	 */
+	private static function term_names( $post, $taxonomy ) {
+		$terms = get_the_terms( $post, $taxonomy );
+		if ( ! is_array( $terms ) ) {
+			return array();
+		}
+
+		return array_values(
+			array_map(
+				function ( $term ) {
+					return self::plain_text( $term->name );
+				},
+				$terms
+			)
+		);
+	}
+
+	/**
+	 * Escape a scalar value for double-quoted YAML.
+	 *
+	 * @param mixed $value Value.
+	 * @return string
+	 */
+	private static function yaml_escape( $value ) {
+		return str_replace( array( '\\', '"' ), array( '\\\\', '\"' ), self::plain_text( (string) $value ) );
 	}
 
 	/**

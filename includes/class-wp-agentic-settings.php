@@ -31,6 +31,8 @@ class WP_Agentic_Settings {
 			'enable_api_catalog'        => 1,
 			'enable_agent_skills'       => 1,
 			'enable_markdown'           => 1,
+			'enable_webmcp'             => 1,
+			'exposed_post_types'        => array( 'post', 'page' ),
 			'publisher_name'            => $site_name,
 			'publisher_url'             => $home_url,
 			'contact_url'               => self::trailingslash( $home_url ) . 'contato/',
@@ -81,6 +83,7 @@ class WP_Agentic_Settings {
 			'enable_api_catalog',
 			'enable_agent_skills',
 			'enable_markdown',
+			'enable_webmcp',
 			'include_graphql_if_active',
 		);
 
@@ -97,7 +100,23 @@ class WP_Agentic_Settings {
 			$output[ $key ] = in_array( $value, array( 'yes', 'no' ), true ) ? $value : 'yes';
 		}
 
+		$post_types = isset( $input['exposed_post_types'] ) && is_array( $input['exposed_post_types'] ) ? $input['exposed_post_types'] : $defaults['exposed_post_types'];
+		$output['exposed_post_types'] = self::sanitize_post_types( $post_types );
+
 		return $output;
+	}
+
+	/**
+	 * Return public post types exposed to agent read APIs.
+	 *
+	 * @param array<string,mixed>|null $settings Settings override.
+	 * @return array<int,string>
+	 */
+	public static function exposed_post_types( $settings = null ) {
+		$settings   = is_array( $settings ) ? $settings : self::get();
+		$post_types = isset( $settings['exposed_post_types'] ) && is_array( $settings['exposed_post_types'] ) ? $settings['exposed_post_types'] : array( 'post', 'page' );
+
+		return self::sanitize_post_types( $post_types );
 	}
 
 	/**
@@ -149,6 +168,38 @@ class WP_Agentic_Settings {
 		$value = (string) $value;
 
 		return function_exists( 'esc_url_raw' ) ? esc_url_raw( $value ) : filter_var( $value, FILTER_SANITIZE_URL );
+	}
+
+	/**
+	 * Sanitize a list of public post type names.
+	 *
+	 * @param array<mixed> $post_types Raw post type names.
+	 * @return array<int,string>
+	 */
+	private static function sanitize_post_types( $post_types ) {
+		$allowed = array( 'post', 'page' );
+		if ( function_exists( 'get_post_types' ) ) {
+			$allowed = array_values(
+				array_filter(
+					get_post_types( array( 'public' => true ), 'names' ),
+					function ( $post_type ) {
+						return 'attachment' !== $post_type;
+					}
+				)
+			);
+		}
+
+		$clean = array();
+		foreach ( $post_types as $post_type ) {
+			$post_type = sanitize_key( (string) $post_type );
+			if ( in_array( $post_type, $allowed, true ) ) {
+				$clean[] = $post_type;
+			}
+		}
+
+		$clean = array_values( array_unique( $clean ) );
+
+		return empty( $clean ) ? array( 'post', 'page' ) : $clean;
 	}
 
 	/**

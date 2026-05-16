@@ -71,6 +71,7 @@ class WP_Agentic_Admin {
 			'llms.txt'     => home_url( 'llms.txt' ),
 			'API Catalog'  => home_url( '.well-known/api-catalog' ),
 			'Agent Skills' => home_url( '.well-known/agent-skills/index.json' ),
+			'WebMCP REST'  => rest_url( 'wp-agentic/v1/context' ),
 		);
 		?>
 		<div class="wrap">
@@ -88,6 +89,7 @@ class WP_Agentic_Admin {
 					<?php self::checkbox_row( 'enable_api_catalog', __( 'API Catalog route', 'wp-agentic' ), $settings ); ?>
 					<?php self::checkbox_row( 'enable_agent_skills', __( 'Agent Skills route', 'wp-agentic' ), $settings ); ?>
 					<?php self::checkbox_row( 'enable_markdown', __( 'Markdown negotiation', 'wp-agentic' ), $settings ); ?>
+					<?php self::checkbox_row( 'enable_webmcp', __( 'WebMCP read-only tools', 'wp-agentic' ), $settings ); ?>
 					<?php self::checkbox_row( 'include_graphql_if_active', __( 'Advertise WPGraphQL when active', 'wp-agentic' ), $settings ); ?>
 				</table>
 
@@ -96,6 +98,7 @@ class WP_Agentic_Admin {
 					<?php self::text_row( 'publisher_name', __( 'Publisher name', 'wp-agentic' ), $settings ); ?>
 					<?php self::url_row( 'publisher_url', __( 'Publisher URL', 'wp-agentic' ), $settings ); ?>
 					<?php self::url_row( 'contact_url', __( 'Contact URL', 'wp-agentic' ), $settings ); ?>
+					<?php self::post_types_row( 'exposed_post_types', __( 'Exposed public post types', 'wp-agentic' ), $settings ); ?>
 				</table>
 
 				<h2><?php esc_html_e( 'Content Signals', 'wp-agentic' ); ?></h2>
@@ -120,6 +123,14 @@ class WP_Agentic_Admin {
 					<tr>
 						<th scope="row"><?php esc_html_e( 'Markdown test', 'wp-agentic' ); ?></th>
 						<td><code>curl -I -H 'Accept: text/markdown' <?php echo esc_html( home_url( '/' ) ); ?></code></td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Agent Skills v0.2 test', 'wp-agentic' ); ?></th>
+						<td><code>curl <?php echo esc_html( home_url( '.well-known/agent-skills/search-site/SKILL.md' ) ); ?></code></td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'WebMCP browser check', 'wp-agentic' ); ?></th>
+						<td><?php esc_html_e( 'Public pages print a read-only navigator.modelContext registration script when WebMCP is enabled.', 'wp-agentic' ); ?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -184,6 +195,35 @@ class WP_Agentic_Admin {
 		<tr>
 			<th scope="row"><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $label ); ?></label></th>
 			<td><input class="regular-text" type="<?php echo esc_attr( $type ); ?>" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $settings[ $key ] ?? '' ); ?>"></td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Render public post type checkboxes.
+	 *
+	 * @param string              $key Settings key.
+	 * @param string              $label Label.
+	 * @param array<string,mixed> $settings Settings.
+	 * @return void
+	 */
+	private static function post_types_row( $key, $label, $settings ) {
+		$name     = WP_Agentic_Settings::OPTION_NAME . '[' . $key . '][]';
+		$selected = WP_Agentic_Settings::exposed_post_types( $settings );
+		$types    = get_post_types( array( 'public' => true ), 'objects' );
+		unset( $types['attachment'] );
+		?>
+		<tr>
+			<th scope="row"><?php echo esc_html( $label ); ?></th>
+			<td>
+				<?php foreach ( $types as $type ) : ?>
+					<label style="display:block;margin:0 0 4px;">
+						<input type="checkbox" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $type->name ); ?>" <?php checked( in_array( $type->name, $selected, true ) ); ?>>
+						<?php echo esc_html( $type->labels->singular_name ?? $type->name ); ?> <code><?php echo esc_html( $type->name ); ?></code>
+					</label>
+				<?php endforeach; ?>
+				<p class="description"><?php esc_html_e( 'Only published public content from these types can be returned by WP Agentic read APIs and WebMCP tools.', 'wp-agentic' ); ?></p>
+			</td>
 		</tr>
 		<?php
 	}

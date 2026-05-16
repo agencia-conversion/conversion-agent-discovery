@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_AGENTIC_TESTING' ) ) {
  */
 class WP_Agentic_Routes {
 	const QUERY_VAR = 'wp_agentic_route';
+	const SKILL_VAR = 'wp_agentic_skill';
 
 	/**
 	 * Register hooks.
@@ -25,6 +26,7 @@ class WP_Agentic_Routes {
 		add_filter( 'query_vars', array( __CLASS__, 'query_vars' ) );
 		add_action( 'template_redirect', array( __CLASS__, 'maybe_serve_route' ), 0 );
 		add_action( 'template_redirect', array( 'WP_Agentic_Markdown', 'maybe_serve_markdown' ), 1 );
+		add_action( 'send_headers', array( __CLASS__, 'send_link_headers' ) );
 		add_filter( 'robots_txt', array( __CLASS__, 'filter_robots_txt' ), 20, 2 );
 	}
 
@@ -38,6 +40,7 @@ class WP_Agentic_Routes {
 		add_rewrite_rule( '^\.well-known/llms\.txt$', 'index.php?' . self::QUERY_VAR . '=well-known-llms', 'top' );
 		add_rewrite_rule( '^\.well-known/api-catalog/?$', 'index.php?' . self::QUERY_VAR . '=api-catalog', 'top' );
 		add_rewrite_rule( '^\.well-known/agent-skills/index\.json$', 'index.php?' . self::QUERY_VAR . '=agent-skills', 'top' );
+		add_rewrite_rule( '^\.well-known/agent-skills/([a-z0-9-]+)/SKILL\.md$', 'index.php?' . self::QUERY_VAR . '=agent-skill&' . self::SKILL_VAR . '=$matches[1]', 'top' );
 	}
 
 	/**
@@ -48,6 +51,7 @@ class WP_Agentic_Routes {
 	 */
 	public static function query_vars( $vars ) {
 		$vars[] = self::QUERY_VAR;
+		$vars[] = self::SKILL_VAR;
 
 		return $vars;
 	}
@@ -79,6 +83,42 @@ class WP_Agentic_Routes {
 
 		if ( 'agent-skills' === $route && ! empty( $settings['enable_agent_skills'] ) ) {
 			self::send_json( self::agent_skills( $settings ), 'application/json; charset=UTF-8' );
+		}
+
+		if ( 'agent-skill' === $route && ! empty( $settings['enable_agent_skills'] ) ) {
+			$skill = sanitize_key( get_query_var( self::SKILL_VAR ) );
+			$body  = self::agent_skill_markdown( $skill, $settings );
+			if ( '' !== $body ) {
+				self::send_text( $body, 'text/markdown; charset=UTF-8' );
+			}
+		}
+	}
+
+	/**
+	 * Advertise agent resources through explicit Link headers.
+	 *
+	 * @return void
+	 */
+	public static function send_link_headers() {
+		if ( is_admin() || ! WP_Agentic_Settings::enabled() ) {
+			return;
+		}
+
+		$settings = WP_Agentic_Settings::get();
+		if ( empty( $settings['enable_api_catalog'] ) && empty( $settings['enable_llms'] ) && empty( $settings['enable_agent_skills'] ) ) {
+			return;
+		}
+
+		if ( ! empty( $settings['enable_api_catalog'] ) ) {
+			header( 'Link: <' . self::home_url( '.well-known/api-catalog' ) . '>; rel="api-catalog"; type="application/linkset+json"', false );
+		}
+
+		if ( ! empty( $settings['enable_llms'] ) ) {
+			header( 'Link: <' . self::home_url( 'llms.txt' ) . '>; rel="describedby"; type="text/plain"', false );
+		}
+
+		if ( ! empty( $settings['enable_agent_skills'] ) ) {
+			header( 'Link: <' . self::home_url( '.well-known/agent-skills/index.json' ) . '>; rel="describedby"; type="application/json"', false );
 		}
 	}
 
@@ -168,12 +208,22 @@ class WP_Agentic_Routes {
 						'type'  => 'application/json',
 						'title' => 'WordPress REST API',
 					),
+					array(
+						'href'  => self::home_url( 'wp-json/wp-agentic/v1/' ),
+						'type'  => 'application/json',
+						'title' => 'WP Agentic read-only REST API',
+					),
 				),
 				'service-doc'  => array(
 					array(
 						'href'  => self::home_url( 'wp-json/' ),
 						'type'  => 'application/json',
 						'title' => 'REST API index',
+					),
+					array(
+						'href'  => self::home_url( 'wp-json/wp-agentic/v1/context' ),
+						'type'  => 'application/json',
+						'title' => 'WP Agentic site context',
 					),
 				),
 				'describedby'  => array(
@@ -216,10 +266,26 @@ class WP_Agentic_Routes {
 	 * @return array<string,mixed>
 	 */
 	public static function agent_skills( $settings ) {
-		$name        = self::clean_text( $settings['publisher_name'] ?? self::site_name() );
-		$contact_url = self::clean_url( $settings['contact_url'] ?? self::home_url( 'contato/' ) );
+		$name   = self::clean_text( $settings['publisher_name'] ?? self::site_name() );
+		$skills = array();
+
+		foreach ( self::agent_skill_definitions( $settings ) as $skill ) {
+			$body     = self::agent_skill_markdown( $skill['name'], $settings );
+			$skills[] = array(
+				'name'        => $skill['name'],
+				'id'          => $skill['id'],
+				'type'        => 'skill-md',
+				'description' => $skill['description'],
+				'url'         => self::home_url( '.well-known/agent-skills/' . $skill['name'] . '/SKILL.md' ),
+				'digest'      => 'sha256:' . hash( 'sha256', $body ),
+				'version'     => WP_AGENTIC_VERSION,
+				'endpoint'    => $skill['endpoint'],
+				'read_only'   => true,
+			);
+		}
 
 		return array(
+			'$schema'    => 'https://schemas.agentskills.io/discovery/0.2.0/schema.json',
 			'name'        => $name . ' Agent Skills',
 			'version'     => WP_AGENTIC_VERSION,
 			'description' => 'Read-only public skills for discovering and reading site content.',
@@ -227,39 +293,108 @@ class WP_Agentic_Routes {
 				'name' => $name,
 				'url'  => self::clean_url( $settings['publisher_url'] ?? self::home_url() ),
 			),
-			'skills'      => array(
-				array(
-					'id'          => 'read_site_content',
-					'name'        => 'Read site content',
-					'description' => 'Read public pages and posts from the site.',
-					'type'        => 'read',
-					'endpoint'    => self::home_url( 'wp-json/wp/v2/' ),
-				),
-				array(
-					'id'          => 'search_site',
-					'name'        => 'Search site',
-					'description' => 'Search public WordPress content.',
-					'type'        => 'read',
-					'endpoint'    => self::home_url( 'wp-json/wp/v2/search' ),
-					'parameters'  => array(
-						'search' => 'Search query string.',
-					),
-				),
-				array(
-					'id'          => 'read_article',
-					'name'        => 'Read article',
-					'description' => 'Read a public article by URL or WordPress REST API id.',
-					'type'        => 'read',
-					'endpoint'    => self::home_url( 'wp-json/wp/v2/posts/{id}' ),
-				),
-				array(
-					'id'                 => 'contact_conversion',
-					'name'               => 'Contact',
-					'description'        => 'Open the public contact page. Submitting forms requires human confirmation.',
-					'type'               => 'handoff',
-					'endpoint'           => $contact_url,
-					'human_confirmation' => true,
-				),
+			'skills'      => $skills,
+		);
+	}
+
+	/**
+	 * Build one virtual SKILL.md artifact.
+	 *
+	 * @param string              $skill_name Skill identifier.
+	 * @param array<string,mixed> $settings Settings.
+	 * @return string
+	 */
+	public static function agent_skill_markdown( $skill_name, $settings ) {
+		$definitions = self::agent_skill_definitions( $settings );
+		if ( empty( $definitions[ $skill_name ] ) ) {
+			return '';
+		}
+
+		$skill = $definitions[ $skill_name ];
+		$name  = self::clean_text( $settings['publisher_name'] ?? self::site_name() );
+
+		$lines = array(
+			'---',
+			'name: ' . $skill['name'],
+			'description: "' . self::yaml_escape( $skill['description'] ) . '"',
+			'---',
+			'',
+			'# ' . $skill['title'],
+			'',
+			'Use this skill when an agent needs to work with public content from ' . $name . '.',
+			'',
+			'## Behavior',
+			'- This skill is read-only.',
+			'- Use only public, published content.',
+			'- Do not submit forms, authenticate, edit content, or perform transactions.',
+			'',
+			'## Endpoint',
+			'- ' . $skill['endpoint'],
+			'',
+			'## Input',
+			$skill['input'],
+			'',
+			'## Output',
+			$skill['output'],
+		);
+
+		return implode( "\n", $lines ) . "\n";
+	}
+
+	/**
+	 * Read-only skill definitions.
+	 *
+	 * @param array<string,mixed> $settings Settings.
+	 * @return array<string,array<string,string>>
+	 */
+	private static function agent_skill_definitions( $settings ) {
+		$contact_url = self::clean_url( $settings['contact_url'] ?? self::home_url( 'contato/' ) );
+
+		return array(
+			'read-site-content' => array(
+				'name'        => 'read-site-content',
+				'id'          => 'read_site_content',
+				'title'       => 'Read Site Content',
+				'description' => 'Read public pages and posts from the site as clean Markdown.',
+				'endpoint'    => self::home_url( 'wp-json/wp-agentic/v1/content' ),
+				'input'       => '- Provide `id`, `url`, or `slug` for a public post or page.',
+				'output'      => '- Returns title, URL, excerpt, dates, and Markdown content.',
+			),
+			'search-site'       => array(
+				'name'        => 'search-site',
+				'id'          => 'search_site',
+				'title'       => 'Search Site',
+				'description' => 'Search public WordPress content by query string.',
+				'endpoint'    => self::home_url( 'wp-json/wp-agentic/v1/search' ),
+				'input'       => '- Provide `query` and optional `per_page`.',
+				'output'      => '- Returns matching public content summaries.',
+			),
+			'read-article'      => array(
+				'name'        => 'read-article',
+				'id'          => 'read_article',
+				'title'       => 'Read Article',
+				'description' => 'Read a public article by URL, slug, or WordPress ID.',
+				'endpoint'    => self::home_url( 'wp-json/wp-agentic/v1/content' ),
+				'input'       => '- Provide article `id`, `url`, or `slug`.',
+				'output'      => '- Returns article metadata and Markdown body.',
+			),
+			'list-recent-posts' => array(
+				'name'        => 'list-recent-posts',
+				'id'          => 'list_recent_posts',
+				'title'       => 'List Recent Posts',
+				'description' => 'List recent public posts and pages exposed by the site.',
+				'endpoint'    => self::home_url( 'wp-json/wp-agentic/v1/recent' ),
+				'input'       => '- Optionally provide `per_page`, capped at 20.',
+				'output'      => '- Returns recent public content summaries.',
+			),
+			'contact-conversion' => array(
+				'name'        => 'contact-conversion',
+				'id'          => 'contact_conversion',
+				'title'       => 'Contact Conversion',
+				'description' => 'Open the public contact page without submitting forms automatically.',
+				'endpoint'    => $contact_url,
+				'input'       => '- No automated form submission is supported.',
+				'output'      => '- Returns the public contact URL and requires human confirmation for any form action.',
 			),
 		);
 	}
@@ -361,5 +496,15 @@ class WP_Agentic_Routes {
 		$text = (string) $text;
 
 		return function_exists( 'sanitize_text_field' ) ? sanitize_text_field( $text ) : trim( strip_tags( $text ) );
+	}
+
+	/**
+	 * Escape a scalar for double-quoted YAML.
+	 *
+	 * @param string $text Text.
+	 * @return string
+	 */
+	private static function yaml_escape( $text ) {
+		return str_replace( array( '\\', '"' ), array( '\\\\', '\"' ), self::clean_text( $text ) );
 	}
 }

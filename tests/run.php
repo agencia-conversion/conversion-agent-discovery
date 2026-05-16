@@ -1,6 +1,6 @@
 <?php
 define( 'WP_AGENTIC_TESTING', true );
-define( 'WP_AGENTIC_VERSION', '0.1.0' );
+define( 'WP_AGENTIC_VERSION', '0.1.1' );
 
 function wp_strip_all_tags( $text ) {
 	return strip_tags( $text );
@@ -24,6 +24,10 @@ function esc_url_raw( $url ) {
 
 function sanitize_text_field( $text ) {
 	return trim( strip_tags( (string) $text ) );
+}
+
+function sanitize_key( $key ) {
+	return strtolower( preg_replace( '/[^a-z0-9_\\-]/', '', (string) $key ) );
 }
 
 function esc_html( $text ) {
@@ -69,6 +73,7 @@ $settings = WP_Agentic_Settings::sanitize(
 
 assert_true( 'Conversion' === $settings['publisher_name'], 'settings sanitize publisher name' );
 assert_true( 'ai-train=yes, search=yes, ai-input=yes' === WP_Agentic_Settings::content_signal_value( $settings ), 'content signal value' );
+assert_true( in_array( 'post', WP_Agentic_Settings::exposed_post_types( $settings ), true ), 'settings expose posts by default' );
 
 assert_true( WP_Agentic_Markdown::accepts_markdown( 'text/html, text/markdown;q=1' ), 'Accept header detects text/markdown' );
 assert_true( ! WP_Agentic_Markdown::accepts_markdown( 'text/html, application/json' ), 'Accept header rejects missing markdown' );
@@ -78,14 +83,21 @@ $markdown = WP_Agentic_Markdown::html_to_markdown( '<h1>Hello</h1><p>Read <a hre
 assert_true( false !== strpos( $markdown, '# Hello' ), 'HTML h1 converts to Markdown heading' );
 assert_true( false !== strpos( $markdown, '[this](https://example.com/x)' ), 'HTML link converts to Markdown link' );
 assert_true( false === strpos( $markdown, 'alert' ), 'script content removed from Markdown' );
+assert_true( false === strpos( WP_Agentic_Markdown::html_to_markdown( '<nav>Menu</nav><p>Body</p>' ), 'Menu' ), 'navigation content removed from Markdown' );
 
 $catalog = WP_Agentic_Routes::api_catalog( $settings );
 assert_true( isset( $catalog['linkset'][0]['service-desc'][0]['href'] ), 'API catalog exposes service-desc' );
 assert_true( 'https://example.com/wp-json/' === $catalog['linkset'][0]['service-desc'][0]['href'], 'API catalog points to REST API' );
 
 $skills = WP_Agentic_Routes::agent_skills( $settings );
-assert_true( 4 === count( $skills['skills'] ), 'agent skills exposes four skills' );
-assert_true( 'read_site_content' === $skills['skills'][0]['id'], 'agent skills includes read_site_content' );
+assert_true( 'https://schemas.agentskills.io/discovery/0.2.0/schema.json' === $skills['$schema'], 'agent skills exposes v0.2 schema' );
+assert_true( 5 === count( $skills['skills'] ), 'agent skills exposes five skills' );
+assert_true( 'read-site-content' === $skills['skills'][0]['name'], 'agent skills includes read-site-content' );
+assert_true( 0 === strpos( $skills['skills'][0]['digest'], 'sha256:' ), 'agent skills includes sha256 digest' );
+
+$skill_md = WP_Agentic_Routes::agent_skill_markdown( 'search-site', $settings );
+assert_true( false !== strpos( $skill_md, 'name: search-site' ), 'SKILL.md includes frontmatter name' );
+assert_true( false !== strpos( $skill_md, 'wp-json/wp-agentic/v1/search' ), 'SKILL.md includes REST endpoint' );
 
 $llms = WP_Agentic_Routes::llms_text( $settings );
 assert_true( false !== strpos( $llms, '## Agent resources' ), 'llms.txt includes agent resources' );

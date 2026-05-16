@@ -93,6 +93,9 @@ curl -fsS -H 'Accept: text/markdown' "http://localhost:${PORT}/" | grep -q '^# W
 curl -fsS "http://localhost:${PORT}/robots.txt" | grep -q 'Content-Signal: ai-train=yes, search=yes, ai-input=yes'
 curl -fsS "http://localhost:${PORT}/llms.txt" | grep -q '## Agent resources'
 curl -fsS "http://localhost:${PORT}/.well-known/api-catalog" | php -r 'json_decode(stream_get_contents(STDIN), true); exit(json_last_error() === JSON_ERROR_NONE ? 0 : 1);'
-curl -fsS "http://localhost:${PORT}/.well-known/agent-skills/index.json" | php -r 'json_decode(stream_get_contents(STDIN), true); exit(json_last_error() === JSON_ERROR_NONE ? 0 : 1);'
+curl -fsS "http://localhost:${PORT}/.well-known/agent-skills/index.json" | grep -q 'schemas.agentskills.io/discovery/0.2.0'
+curl -fsS "http://localhost:${PORT}/.well-known/agent-skills/search-site/SKILL.md" | grep -q 'name: search-site'
+curl -fsS "http://localhost:${PORT}/wp-json/wp-agentic/v1/context" | grep -q 'agent_resources'
+curl -fsS "http://localhost:${PORT}/" | grep -q 'wp-agentic-webmcp'
 
 echo "ZIP install smoke test passed on http://localhost:${PORT}"

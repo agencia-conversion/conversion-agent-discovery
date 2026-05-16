@@ -1,0 +1,12 @@
+.git
+.gitignore
+.distignore
+.github
+dist
+tests
+tools
+docker-compose.yml
+composer.json
+composer.lock
+.DS_Store
+*.log

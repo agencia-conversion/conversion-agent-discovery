@@ -1,7 +1,7 @@
 {
-  "name": "conversion/agent-readiness",
-  "version": "0.1.7",
-  "description": "Agent readiness for WordPress: Markdown negotiation, llms.txt, API catalog, agent skills, and AI content signals.",
+  "name": "conversion/conversion-agent-discovery",
+  "version": "0.1.8",
+  "description": "Read-only agent discovery surfaces for WordPress: Markdown negotiation, llms.txt, API catalog, agent skills, WebMCP, and content signals.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "require": {

@@ -1,8 +1,8 @@
 <?php
 /**
- * Public agent-readiness routes.
+ * Public conversion-agent-discovery routes.
  *
- * @package Agent_Readiness
+ * @package Conversion_Agent_Discovery
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Generates virtual route responses and robots.txt signals.
  */
-class Agent_Readiness_Routes {
-	const QUERY_VAR = 'wp_agentic_route';
-	const SKILL_VAR = 'wp_agentic_skill';
+class Conversion_Agent_Discovery_Routes {
+	const QUERY_VAR = 'conversion_agent_discovery_route';
+	const SKILL_VAR = 'conversion_agent_discovery_skill';
 
 	/**
 	 * Register hooks.
@@ -25,7 +25,7 @@ class Agent_Readiness_Routes {
 		add_action( 'init', array( __CLASS__, 'add_rewrite_rules' ) );
 		add_filter( 'query_vars', array( __CLASS__, 'query_vars' ) );
 		add_action( 'template_redirect', array( __CLASS__, 'maybe_serve_route' ), 0 );
-		add_action( 'template_redirect', array( 'Agent_Readiness_Markdown', 'maybe_serve_markdown' ), 1 );
+		add_action( 'template_redirect', array( 'Conversion_Agent_Discovery_Markdown', 'maybe_serve_markdown' ), 1 );
 		add_action( 'send_headers', array( __CLASS__, 'send_link_headers' ) );
 		add_filter( 'robots_txt', array( __CLASS__, 'filter_robots_txt' ), 20, 2 );
 	}
@@ -62,7 +62,7 @@ class Agent_Readiness_Routes {
 	 * @return void
 	 */
 	public static function maybe_serve_route() {
-		if ( ! Agent_Readiness_Settings::enabled() ) {
+		if ( ! Conversion_Agent_Discovery_Settings::enabled() ) {
 			return;
 		}
 
@@ -71,7 +71,7 @@ class Agent_Readiness_Routes {
 			return;
 		}
 
-		$settings = Agent_Readiness_Settings::get();
+		$settings = Conversion_Agent_Discovery_Settings::get();
 
 		if ( in_array( $route, array( 'llms', 'well-known-llms' ), true ) && ! empty( $settings['enable_llms'] ) ) {
 			self::send_text( self::llms_text( $settings ), 'text/plain; charset=UTF-8' );
@@ -100,11 +100,11 @@ class Agent_Readiness_Routes {
 	 * @return void
 	 */
 	public static function send_link_headers() {
-		if ( is_admin() || ! Agent_Readiness_Settings::enabled() ) {
+		if ( is_admin() || ! Conversion_Agent_Discovery_Settings::enabled() ) {
 			return;
 		}
 
-		$settings = Agent_Readiness_Settings::get();
+		$settings = Conversion_Agent_Discovery_Settings::get();
 		if ( empty( $settings['enable_api_catalog'] ) && empty( $settings['enable_llms'] ) && empty( $settings['enable_agent_skills'] ) ) {
 			return;
 		}
@@ -132,16 +132,16 @@ class Agent_Readiness_Routes {
 	public static function filter_robots_txt( $output, $public ) {
 		unset( $public );
 
-		if ( ! Agent_Readiness_Settings::enabled() ) {
+		if ( ! Conversion_Agent_Discovery_Settings::enabled() ) {
 			return $output;
 		}
 
-		$settings = Agent_Readiness_Settings::get();
+		$settings = Conversion_Agent_Discovery_Settings::get();
 		if ( empty( $settings['enable_content_signals'] ) ) {
 			return $output;
 		}
 
-		$signal_line = 'Content-Signal: ' . Agent_Readiness_Settings::content_signal_value( $settings );
+		$signal_line = 'Content-Signal: ' . Conversion_Agent_Discovery_Settings::content_signal_value( $settings );
 		if ( false !== stripos( $output, 'Content-Signal:' ) ) {
 			return $output;
 		}
@@ -159,7 +159,7 @@ class Agent_Readiness_Routes {
 		$site_url      = self::clean_url( $settings['publisher_url'] ?? self::home_url() );
 		$name          = self::clean_text( $settings['publisher_name'] ?? self::site_name() );
 		$contact_url   = self::clean_url( $settings['contact_url'] ?? self::home_url( 'contato/' ) );
-		$wp_json       = self::home_url( 'wp-json/' );
+		$wp_json       = self::rest_url();
 		$api_catalog   = self::home_url( '.well-known/api-catalog' );
 		$agent_skills  = self::home_url( '.well-known/agent-skills/index.json' );
 		$sitemap       = self::sitemap_url();
@@ -182,7 +182,7 @@ class Agent_Readiness_Routes {
 			'- Sitemap: ' . $sitemap,
 			'',
 			'## Content signals',
-			'- Content-Signal: ' . Agent_Readiness_Settings::content_signal_value( $settings ),
+			'- Content-Signal: ' . Conversion_Agent_Discovery_Settings::content_signal_value( $settings ),
 			'',
 			'## Usage',
 			'- Public pages support Markdown negotiation with `Accept: text/markdown` when enabled.',
@@ -204,26 +204,26 @@ class Agent_Readiness_Routes {
 				'anchor'       => array( self::home_url() ),
 				'service-desc' => array(
 					array(
-						'href'  => self::home_url( 'wp-json/' ),
+						'href'  => self::rest_url(),
 						'type'  => 'application/json',
 						'title' => 'WordPress REST API',
 					),
 					array(
-						'href'  => self::home_url( 'wp-json/agent-readiness/v1/' ),
+						'href'  => self::rest_url( 'conversion-agent-discovery/v1/' ),
 						'type'  => 'application/json',
-						'title' => 'Agent Readiness read-only REST API',
+						'title' => 'Conversion Agent Discovery read-only REST API',
 					),
 				),
 				'service-doc'  => array(
 					array(
-						'href'  => self::home_url( 'wp-json/' ),
+						'href'  => self::rest_url(),
 						'type'  => 'application/json',
 						'title' => 'REST API index',
 					),
 					array(
-						'href'  => self::home_url( 'wp-json/agent-readiness/v1/context' ),
+						'href'  => self::rest_url( 'conversion-agent-discovery/v1/context' ),
 						'type'  => 'application/json',
-						'title' => 'Agent Readiness site context',
+						'title' => 'Conversion Agent Discovery site context',
 					),
 				),
 				'describedby'  => array(
@@ -278,7 +278,7 @@ class Agent_Readiness_Routes {
 				'description' => $skill['description'],
 				'url'         => self::home_url( '.well-known/agent-skills/' . $skill['name'] . '/SKILL.md' ),
 				'digest'      => 'sha256:' . hash( 'sha256', $body ),
-				'version'     => AGENT_READINESS_VERSION,
+				'version'     => CONVERSION_AGENT_DISCOVERY_VERSION,
 				'endpoint'    => $skill['endpoint'],
 				'read_only'   => true,
 			);
@@ -287,7 +287,7 @@ class Agent_Readiness_Routes {
 		return array(
 			'$schema'    => 'https://schemas.agentskills.io/discovery/0.2.0/schema.json',
 			'name'        => $name . ' Agent Skills',
-			'version'     => AGENT_READINESS_VERSION,
+			'version'     => CONVERSION_AGENT_DISCOVERY_VERSION,
 			'description' => 'Read-only public skills for discovering and reading site content.',
 			'publisher'   => array(
 				'name' => $name,
@@ -356,7 +356,7 @@ class Agent_Readiness_Routes {
 				'id'          => 'read_site_content',
 				'title'       => 'Read Site Content',
 				'description' => 'Read public pages and posts from the site as clean Markdown.',
-				'endpoint'    => self::home_url( 'wp-json/agent-readiness/v1/content' ),
+				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/content' ),
 				'input'       => '- Provide `id`, `url`, or `slug` for a public post or page.',
 				'output'      => '- Returns title, URL, excerpt, dates, and Markdown content.',
 			),
@@ -365,7 +365,7 @@ class Agent_Readiness_Routes {
 				'id'          => 'search_site',
 				'title'       => 'Search Site',
 				'description' => 'Search public WordPress content by query string.',
-				'endpoint'    => self::home_url( 'wp-json/agent-readiness/v1/search' ),
+				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/search' ),
 				'input'       => '- Provide `query` and optional `per_page`.',
 				'output'      => '- Returns matching public content summaries.',
 			),
@@ -374,7 +374,7 @@ class Agent_Readiness_Routes {
 				'id'          => 'read_article',
 				'title'       => 'Read Article',
 				'description' => 'Read a public article by URL, slug, or WordPress ID.',
-				'endpoint'    => self::home_url( 'wp-json/agent-readiness/v1/content' ),
+				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/content' ),
 				'input'       => '- Provide article `id`, `url`, or `slug`.',
 				'output'      => '- Returns article metadata and Markdown body.',
 			),
@@ -383,7 +383,7 @@ class Agent_Readiness_Routes {
 				'id'          => 'list_recent_posts',
 				'title'       => 'List Recent Posts',
 				'description' => 'List recent public posts and pages exposed by the site.',
-				'endpoint'    => self::home_url( 'wp-json/agent-readiness/v1/recent' ),
+				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/recent' ),
 				'input'       => '- Optionally provide `per_page`, capped at 20.',
 				'output'      => '- Returns recent public content summaries.',
 			),
@@ -409,7 +409,7 @@ class Agent_Readiness_Routes {
 	private static function send_text( $body, $content_type ) {
 		status_header( 200 );
 		header( 'Content-Type: ' . $content_type );
-		header( 'X-Agent-Readiness: 1' );
+		header( 'X-Conversion-Agent-Discovery: 1' );
 		echo $body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		exit;
 	}
@@ -424,7 +424,7 @@ class Agent_Readiness_Routes {
 	private static function send_json( $data, $content_type ) {
 		status_header( 200 );
 		header( 'Content-Type: ' . $content_type );
-		header( 'X-Agent-Readiness: 1' );
+		header( 'X-Conversion-Agent-Discovery: 1' );
 		echo wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		exit;
 	}
@@ -450,6 +450,20 @@ class Agent_Readiness_Routes {
 		}
 
 		return 'https://example.com/' . ltrim( $path, '/' );
+	}
+
+	/**
+	 * Resolve REST URL.
+	 *
+	 * @param string $path Optional REST path.
+	 * @return string
+	 */
+	private static function rest_url( $path = '' ) {
+		if ( function_exists( 'rest_url' ) ) {
+			return rest_url( $path );
+		}
+
+		return 'https://example.com/wp-json/' . ltrim( $path, '/' );
 	}
 
 	/**

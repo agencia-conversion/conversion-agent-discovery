@@ -1,60 +1,13 @@
-<?php
-/**
- * Browser-side WebMCP tool registration.
- *
- * @package Agent_Readiness
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/**
- * Registers read-only tools for browsers that expose navigator.modelContext.
- */
-class Agent_Readiness_WebMCP {
-	/**
-	 * Register hooks.
-	 *
-	 * @return void
-	 */
-	public static function init() {
-		add_action( 'wp_footer', array( __CLASS__, 'render_script' ), 20 );
-	}
-
-	/**
-	 * Print the WebMCP registration script on public HTML pages.
-	 *
-	 * @return void
-	 */
-	public static function render_script() {
-		if ( ! Agent_Readiness_Settings::enabled() || is_admin() || is_feed() || is_robots() || is_embed() ) {
-			return;
-		}
-
-		$settings = Agent_Readiness_Settings::get();
-		if ( empty( $settings['enable_webmcp'] ) ) {
-			return;
-		}
-
-		$config = array(
-			'endpoints' => array(
-				'search'  => esc_url_raw( rest_url( 'agent-readiness/v1/search' ) ),
-				'content' => esc_url_raw( rest_url( 'agent-readiness/v1/content' ) ),
-				'recent'  => esc_url_raw( rest_url( 'agent-readiness/v1/recent' ) ),
-				'context' => esc_url_raw( rest_url( 'agent-readiness/v1/context' ) ),
-				'contact' => esc_url_raw( rest_url( 'agent-readiness/v1/contact' ) ),
-			),
-		);
-		?>
-<script id="agent-readiness-webmcp">
 (function () {
   var modelContext = navigator.modelContext;
   if (!modelContext) {
     return;
   }
 
-  var config = <?php echo wp_json_encode( $config, JSON_UNESCAPED_SLASHES ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
+  var config = window.ConversionAgentDiscoveryWebMCP || {};
+  if (!config.endpoints) {
+    return;
+  }
 
   function withParams(url, params) {
     var next = new URL(url, window.location.origin);
@@ -71,9 +24,11 @@ class Agent_Readiness_WebMCP {
     var response = await fetch(withParams(url, params || {}), {
       method: 'GET',
       credentials: 'same-origin',
-      headers: { 'Accept': 'application/json' }
+      headers: { Accept: 'application/json' }
     });
-    var body = await response.json().catch(function () { return {}; });
+    var body = await response.json().catch(function () {
+      return {};
+    });
     if (!response.ok) {
       return { error: body.message || 'Request failed', status: response.status };
     }
@@ -92,7 +47,9 @@ class Agent_Readiness_WebMCP {
         },
         required: ['query']
       },
-      execute: function (input) { return getJson(config.endpoints.search, input || {}); },
+      execute: function (input) {
+        return getJson(config.endpoints.search, input || {});
+      },
       annotations: { readOnlyHint: true }
     },
     {
@@ -107,7 +64,9 @@ class Agent_Readiness_WebMCP {
           type: { type: 'string', description: 'Optional post type, usually post or page.' }
         }
       },
-      execute: function (input) { return getJson(config.endpoints.content, input || {}); },
+      execute: function (input) {
+        return getJson(config.endpoints.content, input || {});
+      },
       annotations: { readOnlyHint: true }
     },
     {
@@ -119,21 +78,27 @@ class Agent_Readiness_WebMCP {
           per_page: { type: 'integer', minimum: 1, maximum: 20, description: 'Maximum results to return.' }
         }
       },
-      execute: function (input) { return getJson(config.endpoints.recent, input || {}); },
+      execute: function (input) {
+        return getJson(config.endpoints.recent, input || {});
+      },
       annotations: { readOnlyHint: true }
     },
     {
       name: 'get_site_context',
-      description: 'Get public agent-readiness context, discovery URLs, and content policy for this site.',
+      description: 'Get public Conversion Agent Discovery context, discovery URLs, and content policy for this site.',
       inputSchema: { type: 'object', properties: {} },
-      execute: function () { return getJson(config.endpoints.context, {}); },
+      execute: function () {
+        return getJson(config.endpoints.context, {});
+      },
       annotations: { readOnlyHint: true }
     },
     {
       name: 'contact_conversion',
       description: 'Get the public contact URL. This tool does not submit forms.',
       inputSchema: { type: 'object', properties: {} },
-      execute: function () { return getJson(config.endpoints.contact, {}); },
+      execute: function () {
+        return getJson(config.endpoints.contact, {});
+      },
       annotations: { readOnlyHint: true }
     }
   ];
@@ -153,7 +118,3 @@ class Agent_Readiness_WebMCP {
     } catch (error) {}
   }
 })();
-</script>
-		<?php
-	}
-}

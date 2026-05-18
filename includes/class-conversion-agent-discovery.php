@@ -2,7 +2,7 @@
 /**
  * Main plugin bootstrap.
  *
- * @package Agent_Readiness
+ * @package Conversion_Agent_Discovery
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Coordinates public routes, Markdown negotiation, and admin UI.
  */
-class Agent_Readiness {
-	const VERSION_OPTION = 'wp_agentic_version';
-	const FLUSH_OPTION   = 'agent_readiness_needs_rewrite_flush';
+class Conversion_Agent_Discovery {
+	const VERSION_OPTION = 'conversion_agent_discovery_version';
+	const FLUSH_OPTION   = 'conversion_agent_discovery_needs_rewrite_flush';
 
 	/**
 	 * Boot the plugin.
@@ -22,10 +22,10 @@ class Agent_Readiness {
 	 * @return void
 	 */
 	public static function init() {
-		Agent_Readiness_Routes::init();
-		Agent_Readiness_REST::init();
-		Agent_Readiness_WebMCP::init();
-		Agent_Readiness_Admin::init();
+		Conversion_Agent_Discovery_Routes::init();
+		Conversion_Agent_Discovery_REST::init();
+		Conversion_Agent_Discovery_WebMCP::init();
+		Conversion_Agent_Discovery_Admin::init();
 		add_action( 'init', array( __CLASS__, 'maybe_upgrade' ), 20 );
 		add_action( 'admin_init', array( __CLASS__, 'maybe_flush_rewrite_rules' ) );
 		add_action( 'upgrader_process_complete', array( __CLASS__, 'maybe_flush_after_plugin_update' ), 10, 2 );
@@ -37,13 +37,13 @@ class Agent_Readiness {
 	 * @return void
 	 */
 	public static function activate() {
-		if ( false === get_option( Agent_Readiness_Settings::OPTION_NAME, false ) ) {
-			add_option( Agent_Readiness_Settings::OPTION_NAME, Agent_Readiness_Settings::defaults() );
+		if ( false === get_option( Conversion_Agent_Discovery_Settings::OPTION_NAME, false ) ) {
+			add_option( Conversion_Agent_Discovery_Settings::OPTION_NAME, Conversion_Agent_Discovery_Settings::defaults() );
 		}
 
-		Agent_Readiness_Routes::add_rewrite_rules();
+		Conversion_Agent_Discovery_Routes::add_rewrite_rules();
 		flush_rewrite_rules();
-		update_option( self::VERSION_OPTION, AGENT_READINESS_VERSION );
+		update_option( self::VERSION_OPTION, CONVERSION_AGENT_DISCOVERY_VERSION );
 	}
 
 	/**
@@ -62,11 +62,11 @@ class Agent_Readiness {
 	 */
 	public static function maybe_upgrade() {
 		$stored_version = get_option( self::VERSION_OPTION, '' );
-		if ( AGENT_READINESS_VERSION === $stored_version ) {
+		if ( CONVERSION_AGENT_DISCOVERY_VERSION === $stored_version ) {
 			return;
 		}
 
-		update_option( self::VERSION_OPTION, AGENT_READINESS_VERSION );
+		update_option( self::VERSION_OPTION, CONVERSION_AGENT_DISCOVERY_VERSION );
 		update_option( self::FLUSH_OPTION, '1' );
 	}
 
@@ -80,7 +80,7 @@ class Agent_Readiness {
 			return;
 		}
 
-		Agent_Readiness_Routes::add_rewrite_rules();
+		Conversion_Agent_Discovery_Routes::add_rewrite_rules();
 		flush_rewrite_rules( false );
 		delete_option( self::FLUSH_OPTION );
 	}
@@ -104,11 +104,11 @@ class Agent_Readiness {
 			$plugins[] = $options['plugin'];
 		}
 
-		if ( ! in_array( plugin_basename( AGENT_READINESS_FILE ), $plugins, true ) ) {
+		if ( ! in_array( plugin_basename( CONVERSION_AGENT_DISCOVERY_FILE ), $plugins, true ) ) {
 			return;
 		}
 
-		update_option( self::VERSION_OPTION, AGENT_READINESS_VERSION );
+		update_option( self::VERSION_OPTION, CONVERSION_AGENT_DISCOVERY_VERSION );
 		update_option( self::FLUSH_OPTION, '1' );
 	}
 }

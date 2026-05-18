@@ -2,7 +2,7 @@
 /**
  * Settings model and sanitization.
  *
- * @package Agent_Readiness
+ * @package Conversion_Agent_Discovery
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Stores defaults and sanitizes persisted settings.
  */
-class Agent_Readiness_Settings {
-	const OPTION_NAME = 'wp_agentic_settings';
+class Conversion_Agent_Discovery_Settings {
+	const OPTION_NAME = 'conversion_agent_discovery_settings';
 
 	/**
 	 * Default settings.

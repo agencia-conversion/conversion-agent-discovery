@@ -1,0 +1,56 @@
+.conversion-agent-discovery-wrap{max-width:1240px}
+.conversion-agent-discovery-admin-notices:empty{display:none}
+.conversion-agent-discovery-admin-notices .notice,.conversion-agent-discovery-admin-notices .updated,.conversion-agent-discovery-admin-notices .error,.conversion-agent-discovery-admin-notices .update-nag{display:block;margin:0 0 12px}
+.conversion-agent-discovery-hero{background:#0f172a;color:#fff;border-radius:8px;padding:28px 32px;margin:22px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.conversion-agent-discovery-hero>.notice,.conversion-agent-discovery-hero>.updated,.conversion-agent-discovery-hero>.error,.conversion-agent-discovery-hero>.update-nag{flex:0 0 100%;order:-1;max-width:100%;margin:0;color:#1d2327;background:#fff}
+.conversion-agent-discovery-brand{display:flex;align-items:center;gap:16px;margin:0 0 14px}
+.conversion-agent-discovery-brand a{display:inline-flex;align-items:center}
+.conversion-agent-discovery-brand img{display:block;width:166px;height:auto}
+.conversion-agent-discovery-brand-divider{width:1px;height:30px;background:rgba(255,255,255,.32)}
+.conversion-agent-discovery-hero h1{color:#fff;font-size:30px;line-height:1.15;margin:0;letter-spacing:0}
+.conversion-agent-discovery-kicker{margin:0 0 6px;color:#93c5fd;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.08em}
+.conversion-agent-discovery-hero-copy{font-size:15px;max-width:680px;margin:0;color:#dbeafe}
+.conversion-agent-discovery-hero-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.conversion-agent-discovery-version{border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:5px 10px;color:#e2e8f0;font-weight:700}
+.conversion-agent-discovery-section{margin:24px 0}
+.conversion-agent-discovery-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:0 0 12px}
+.conversion-agent-discovery-section-heading h2{margin:0;font-size:20px}
+.conversion-agent-discovery-section-heading p{margin:0;color:#4b5563;max-width:720px}
+.conversion-agent-discovery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.conversion-agent-discovery-grid-2{grid-template-columns:1fr 2fr}
+.conversion-agent-discovery-grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.conversion-agent-discovery-card{background:#fff;border:1px solid #dcdcde;border-radius:8px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.conversion-agent-discovery-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.conversion-agent-discovery-card h3{font-size:16px;margin:0;color:#111827}
+.conversion-agent-discovery-card p{color:#4b5563;margin:8px 0 0}
+.conversion-agent-discovery-card small{color:#6b7280}
+.conversion-agent-discovery-toggle{display:flex;align-items:center;gap:8px;font-weight:700;margin-top:14px}
+.conversion-agent-discovery-badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700;border:1px solid transparent;white-space:nowrap}
+.conversion-agent-discovery-badge-good{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+.conversion-agent-discovery-badge-warn{background:#fffbeb;color:#92400e;border-color:#fde68a}
+.conversion-agent-discovery-badge-muted{background:#f3f4f6;color:#4b5563;border-color:#e5e7eb}
+.conversion-agent-discovery-route{margin-top:12px;padding-top:12px;border-top:1px solid #eef0f3;word-break:break-all}
+.conversion-agent-discovery-impact{margin-top:12px;color:#111827}
+.conversion-agent-discovery-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.conversion-agent-discovery-field label{display:block;font-weight:700;margin-bottom:4px}
+.conversion-agent-discovery-field input[type=text],.conversion-agent-discovery-field input[type=url],.conversion-agent-discovery-field select{width:100%;max-width:100%}
+.conversion-agent-discovery-inline-fields{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.conversion-agent-discovery-inline-fields label{font-weight:700}
+.conversion-agent-discovery-post-types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:12px}
+.conversion-agent-discovery-protocol h3{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.conversion-agent-discovery-diagnostics{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.conversion-agent-discovery-checklist{background:#fff;border:1px solid #dcdcde;border-radius:8px;margin:0 0 18px;padding:12px 16px}
+.conversion-agent-discovery-checklist li{display:flex;align-items:center;gap:8px;margin:8px 0;color:#111827}
+.conversion-agent-discovery-check{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;font-size:12px;font-weight:700}
+.conversion-agent-discovery-check-yes{background:#ecfdf5;color:#047857}
+.conversion-agent-discovery-check-no{background:#f3f4f6;color:#6b7280}
+.conversion-agent-discovery-measurement-tools{display:grid;gap:8px;margin:0 0 10px}
+.conversion-agent-discovery-measurement-tools a{display:block;background:#fff;border:1px solid #dcdcde;border-radius:6px;padding:9px;line-height:1.45;text-decoration:none;font-weight:700}
+.conversion-agent-discovery-measurement-note{margin:0 0 18px;color:#4b5563}
+.conversion-agent-discovery-code-list{display:grid;gap:8px}
+.conversion-agent-discovery-code-list code{display:block;white-space:normal;background:#fff;border:1px solid #dcdcde;border-radius:6px;padding:9px;line-height:1.45}
+.conversion-agent-discovery-footer{border-top:1px solid #dcdcde;margin:28px 0 0;padding:16px 0;color:#4b5563;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.conversion-agent-discovery-footer-logo{display:inline-flex;align-items:center;margin-right:4px}
+.conversion-agent-discovery-footer-logo img{display:block;width:132px;height:auto}
+@media (max-width:1100px){.conversion-agent-discovery-grid,.conversion-agent-discovery-grid-2,.conversion-agent-discovery-grid-4,.conversion-agent-discovery-diagnostics{grid-template-columns:1fr 1fr}.conversion-agent-discovery-fields{grid-template-columns:1fr}}
+@media (max-width:782px){.conversion-agent-discovery-hero,.conversion-agent-discovery-section-heading{display:block}.conversion-agent-discovery-hero-meta{justify-content:flex-start;margin-top:16px}.conversion-agent-discovery-brand{gap:12px;align-items:flex-start;flex-direction:column}.conversion-agent-discovery-brand-divider{display:none}.conversion-agent-discovery-brand img{width:150px}.conversion-agent-discovery-grid,.conversion-agent-discovery-grid-2,.conversion-agent-discovery-grid-4,.conversion-agent-discovery-diagnostics{grid-template-columns:1fr}.conversion-agent-discovery-post-types{grid-template-columns:1fr}}

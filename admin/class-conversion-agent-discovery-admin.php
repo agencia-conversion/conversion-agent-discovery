@@ -275,12 +275,8 @@ class Conversion_Agent_Discovery_Admin {
 							<?php self::checklist_item( __( 'WPGraphQL detected', 'conversion-agent-discovery' ), $graphql_available ); ?>
 							<?php self::checklist_item( __( 'Link headers enabled', 'conversion-agent-discovery' ), $enabled && ( ! empty( $settings['enable_llms'] ) || ! empty( $settings['enable_api_catalog'] ) || ! empty( $settings['enable_agent_skills'] ) ) ); ?>
 						</ul>
-						<h3><?php esc_html_e( 'Measurement Tools', 'conversion-agent-discovery' ); ?></h3>
-						<div class="conversion-agent-discovery-measurement-tools">
-							<a href="https://isitagentready.com/" target="_blank" rel="noopener noreferrer">isitagentready.com</a>
-							<a href="https://agenticseo.sh/tools/agent-crawl" target="_blank" rel="noopener noreferrer">Agent Crawl</a>
-						</div>
-						<p class="conversion-agent-discovery-measurement-note"><?php esc_html_e( 'Conversion Agent Discovery is designed to improve measurable agent accessibility in scanners such as Is It Agent Ready and Agent Crawl by Conversion.', 'conversion-agent-discovery' ); ?></p>
+						<h3><?php esc_html_e( 'Manual Validation', 'conversion-agent-discovery' ); ?></h3>
+						<p class="conversion-agent-discovery-measurement-note"><?php esc_html_e( 'Use the generated endpoints and curl commands below to validate read-only agent discovery behavior with your preferred tools.', 'conversion-agent-discovery' ); ?></p>
 						<h3><?php esc_html_e( 'curl Commands', 'conversion-agent-discovery' ); ?></h3>
 						<div class="conversion-agent-discovery-code-list">
 							<code>curl -I <?php echo esc_html( home_url( '/' ) ); ?></code>
@@ -288,6 +284,7 @@ class Conversion_Agent_Discovery_Admin {
 							<code>curl <?php echo esc_html( home_url( 'robots.txt' ) ); ?></code>
 							<code>curl <?php echo esc_html( home_url( '.well-known/api-catalog' ) ); ?></code>
 							<code>curl <?php echo esc_html( home_url( '.well-known/agent-skills/index.json' ) ); ?></code>
+							<code>curl <?php echo esc_html( home_url( '.well-known/agent-skills/discovery-0.2.schema.json' ) ); ?></code>
 							<code>curl <?php echo esc_html( home_url( '.well-known/agent-skills/search-site/SKILL.md' ) ); ?></code>
 							<code>curl <?php echo esc_html( rest_url( 'conversion-agent-discovery/v1/context' ) ); ?></code>
 						</div>
@@ -605,6 +602,7 @@ class Conversion_Agent_Discovery_Admin {
 			'well-known llms'   => home_url( '.well-known/llms.txt' ),
 			'API Catalog'       => home_url( '.well-known/api-catalog' ),
 			'Agent Skills'      => home_url( '.well-known/agent-skills/index.json' ),
+			'Agent Skills Schema' => home_url( '.well-known/agent-skills/discovery-0.2.schema.json' ),
 			'Skill Markdown'    => home_url( '.well-known/agent-skills/search-site/SKILL.md' ),
 			'REST context'      => rest_url( 'conversion-agent-discovery/v1/context' ),
 			'REST search'       => rest_url( 'conversion-agent-discovery/v1/search?query=marketing' ),

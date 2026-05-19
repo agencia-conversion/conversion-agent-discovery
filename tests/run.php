@@ -1,6 +1,6 @@
 <?php
 define( 'CONVERSION_AGENT_DISCOVERY_TESTING', true );
-define( 'CONVERSION_AGENT_DISCOVERY_VERSION', '0.1.8' );
+define( 'CONVERSION_AGENT_DISCOVERY_VERSION', '0.1.9' );
 define( 'CONVERSION_AGENT_DISCOVERY_URL', 'https://example.com/wp-content/plugins/conversion-agent-discovery/' );
 define( 'ABSPATH', __DIR__ . '/' );
 
@@ -180,10 +180,15 @@ assert_true( isset( $catalog['linkset'][0]['service-desc'][0]['href'] ), 'API ca
 assert_true( 'https://example.com/wp-json/' === $catalog['linkset'][0]['service-desc'][0]['href'], 'API catalog points to REST API' );
 
 $skills = Conversion_Agent_Discovery_Routes::agent_skills( $settings );
-assert_true( 'https://schemas.agentskills.io/discovery/0.2.0/schema.json' === $skills['$schema'], 'agent skills exposes v0.2 schema' );
+assert_true( 'https://example.com/.well-known/agent-skills/discovery-0.2.schema.json' === $skills['$schema'], 'agent skills exposes local v0.2 schema' );
 assert_true( 5 === count( $skills['skills'] ), 'agent skills exposes five skills' );
 assert_true( 'read-site-content' === $skills['skills'][0]['name'], 'agent skills includes read-site-content' );
 assert_true( 0 === strpos( $skills['skills'][0]['digest'], 'sha256:' ), 'agent skills includes sha256 digest' );
+
+$schema = Conversion_Agent_Discovery_Routes::agent_skills_schema();
+assert_true( 'Agent Skills Discovery 0.2' === $schema['title'], 'local schema exposes expected title' );
+assert_true( in_array( 'skills', $schema['required'], true ), 'local schema requires skills' );
+assert_true( false === strpos( json_encode( $schema ), 'https://' ), 'local schema has no external references' );
 
 $skill_md = Conversion_Agent_Discovery_Routes::agent_skill_markdown( 'search-site', $settings );
 assert_true( false !== strpos( $skill_md, 'name: search-site' ), 'SKILL.md includes frontmatter name' );
@@ -191,18 +196,20 @@ assert_true( false !== strpos( $skill_md, 'wp-json/conversion-agent-discovery/v1
 
 $llms = Conversion_Agent_Discovery_Routes::llms_text( $settings );
 assert_true( false !== strpos( $llms, '## Agent resources' ), 'llms.txt includes agent resources' );
+assert_true( false !== strpos( $llms, 'discovery-0.2.schema.json' ), 'llms.txt includes local Agent Skills schema' );
 assert_true( false !== strpos( $llms, 'Content-Signal: ai-train=yes, search=yes, ai-input=yes' ), 'llms.txt includes Content-Signal' );
 
 ob_start();
 Conversion_Agent_Discovery_Admin::render_page();
 $admin_absent = ob_get_clean();
-assert_true( false !== strpos( $admin_absent, 'Conversion Agent Discovery v0.1.8' ), 'admin footer exposes version' );
+assert_true( false !== strpos( $admin_absent, 'Conversion Agent Discovery v0.1.9' ), 'admin footer exposes version' );
 assert_true( false !== strpos( $admin_absent, 'assets/conversion-logo-white.svg' ), 'admin header includes Conversion logo for dark background' );
 assert_true( false !== strpos( $admin_absent, 'assets/conversion-logo.svg' ), 'admin footer includes Conversion logo for light background' );
 assert_true( false !== strpos( $admin_absent, 'https://conversion.ag/' ), 'admin credits Conversion agency URL' );
 assert_true( false !== strpos( $admin_absent, 'conversion-agent-discovery-admin-notices' ), 'admin provides a dedicated third-party notice lane' );
-assert_true( false !== strpos( $admin_absent, 'https://isitagentready.com/' ), 'admin links to Is It Agent Ready measurement tool' );
-assert_true( false !== strpos( $admin_absent, 'https://agenticseo.sh/tools/agent-crawl' ), 'admin links to Agent Crawl measurement tool' );
+assert_true( false !== strpos( $admin_absent, 'Manual Validation' ), 'admin exposes manual validation section' );
+assert_true( false !== strpos( $admin_absent, 'discovery-0.2.schema.json' ), 'admin exposes local Agent Skills schema route' );
+assert_true( false === strpos( $admin_absent, 'Measurement Tools' ), 'admin omits non-essential measurement tools block' );
 assert_true( false !== strpos( $admin_absent, 'MCP Server Card' ), 'admin explains MCP Server Card boundary' );
 assert_true( false !== strpos( $admin_absent, 'Not detected' ), 'admin shows WPGraphQL absent state' );
 assert_true( false !== strpos( $admin_absent, 'https://wordpress.org/plugins/wp-graphql/' ), 'admin links to WPGraphQL plugin when absent' );

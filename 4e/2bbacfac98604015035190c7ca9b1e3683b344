@@ -1,0 +1,34 @@
+includes/class-conversion-agent-discovery-routes.php
+  s_790caaf690ddbf::t_5e760fc998e0e1 43,89-92,170,187,247-251,300,312-388
+  s_790caaf690ddbf::t_f2a43c7dfeddad 389-391
+conversion-agent-discovery.php
+  s_790caaf690ddbf::t_5e760fc998e0e1 6,22
+composer.json
+  s_790caaf690ddbf::t_5e760fc998e0e1 3
+tests/run.php
+  s_790caaf690ddbf::t_6ab61b8834eaf2 212
+  s_790caaf690ddbf::t_4454f213e879f7 191
+  s_790caaf690ddbf::t_cf90c1e0e91d71 3,183,188-190,192,199,205,210-211
+tools/test-zip-install.sh
+  s_790caaf690ddbf::t_fef8bf1b905832 96-97
+admin/class-conversion-agent-discovery-admin.php
+  s_790caaf690ddbf::t_5e760fc998e0e1 278-279,287,605
+readme.txt
+  s_790caaf690ddbf::t_b29d141ecc4bf0 7,17,26,37-38,41-43,49,75-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.10",
+  "base_commit_sha": "4e2bbacfac98604015035190c7ca9b1e3683b344",
+  "prompts": {},
+  "sessions": {
+    "s_790caaf690ddbf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e3120-4f5f-7d72-a7fb-aa7bd2f27f39",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Diego Ivo <diego@conversion.com.br>"
+    }
+  }
+}

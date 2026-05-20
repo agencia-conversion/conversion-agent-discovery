@@ -22,6 +22,7 @@ class Conversion_Agent_Discovery {
 	 * @return void
 	 */
 	public static function init() {
+		add_action( 'init', array( __CLASS__, 'load_textdomain' ), 0 );
 		Conversion_Agent_Discovery_Routes::init();
 		Conversion_Agent_Discovery_REST::init();
 		Conversion_Agent_Discovery_WebMCP::init();
@@ -29,6 +30,22 @@ class Conversion_Agent_Discovery {
 		add_action( 'init', array( __CLASS__, 'maybe_upgrade' ), 20 );
 		add_action( 'admin_init', array( __CLASS__, 'maybe_flush_rewrite_rules' ) );
 		add_action( 'upgrader_process_complete', array( __CLASS__, 'maybe_flush_after_plugin_update' ), 10, 2 );
+	}
+
+	/**
+	 * Load bundled translations.
+	 *
+	 * @return bool
+	 */
+	public static function load_textdomain() {
+		$locale = function_exists( 'determine_locale' ) ? determine_locale() : get_locale();
+		$mofile = CONVERSION_AGENT_DISCOVERY_PATH . 'languages/conversion-agent-discovery-' . $locale . '.mo';
+
+		if ( ! file_exists( $mofile ) ) {
+			return false;
+		}
+
+		return load_textdomain( 'conversion-agent-discovery', $mofile );
 	}
 
 	/**

@@ -174,26 +174,30 @@ class Conversion_Agent_Discovery_Routes {
 		$lines = array(
 			'# ' . $name,
 			'',
-			'> Agent-readable overview for ' . $name . '.',
+			'> ' . sprintf(
+				/* translators: %s: site name. */
+				__( 'Agent-readable overview for %s.', 'conversion-agent-discovery' ),
+				$name
+			),
 			'',
-			'## Site',
-			'- Home: ' . $site_url,
-			'- Contact: ' . $contact_url,
-			'- Search example: ' . $search_sample,
+			'## ' . __( 'Site', 'conversion-agent-discovery' ),
+			'- ' . __( 'Home', 'conversion-agent-discovery' ) . ': ' . $site_url,
+			'- ' . __( 'Contact', 'conversion-agent-discovery' ) . ': ' . $contact_url,
+			'- ' . __( 'Search example', 'conversion-agent-discovery' ) . ': ' . $search_sample,
 			'',
-			'## Agent resources',
-			'- API catalog: ' . $api_catalog,
-			'- Agent skills: ' . $agent_skills,
-			'- Agent skills schema: ' . $skills_schema,
+			'## ' . __( 'Agent resources', 'conversion-agent-discovery' ),
+			'- ' . __( 'API catalog', 'conversion-agent-discovery' ) . ': ' . $api_catalog,
+			'- ' . __( 'Agent skills', 'conversion-agent-discovery' ) . ': ' . $agent_skills,
+			'- ' . __( 'Agent skills schema', 'conversion-agent-discovery' ) . ': ' . $skills_schema,
 			'- WordPress REST API: ' . $wp_json,
-			'- Sitemap: ' . $sitemap,
+			'- ' . __( 'Sitemap', 'conversion-agent-discovery' ) . ': ' . $sitemap,
 			'',
-			'## Content signals',
+			'## ' . __( 'Content signals', 'conversion-agent-discovery' ),
 			'- Content-Signal: ' . Conversion_Agent_Discovery_Settings::content_signal_value( $settings ),
 			'',
-			'## Usage',
-			'- Public pages support Markdown negotiation with `Accept: text/markdown` when enabled.',
-			'- Tools and routes are read-only in v1.',
+			'## ' . __( 'Usage', 'conversion-agent-discovery' ),
+			'- ' . __( 'Public pages support Markdown negotiation with `Accept: text/markdown` when enabled.', 'conversion-agent-discovery' ),
+			'- ' . __( 'Tools and routes are read-only in v1.', 'conversion-agent-discovery' ),
 		);
 
 		return implode( "\n", $lines ) . "\n";
@@ -213,24 +217,24 @@ class Conversion_Agent_Discovery_Routes {
 					array(
 						'href'  => self::rest_url(),
 						'type'  => 'application/json',
-						'title' => 'WordPress REST API',
+						'title' => __( 'WordPress REST API', 'conversion-agent-discovery' ),
 					),
 					array(
 						'href'  => self::rest_url( 'conversion-agent-discovery/v1/' ),
 						'type'  => 'application/json',
-						'title' => 'Conversion Agent Discovery read-only REST API',
+						'title' => __( 'Conversion Agent Discovery read-only REST API', 'conversion-agent-discovery' ),
 					),
 				),
 				'service-doc'  => array(
 					array(
 						'href'  => self::rest_url(),
 						'type'  => 'application/json',
-						'title' => 'REST API index',
+						'title' => __( 'REST API index', 'conversion-agent-discovery' ),
 					),
 					array(
 						'href'  => self::rest_url( 'conversion-agent-discovery/v1/context' ),
 						'type'  => 'application/json',
-						'title' => 'Conversion Agent Discovery site context',
+						'title' => __( 'Conversion Agent Discovery site context', 'conversion-agent-discovery' ),
 					),
 				),
 				'describedby'  => array(
@@ -242,19 +246,19 @@ class Conversion_Agent_Discovery_Routes {
 					array(
 						'href'  => self::home_url( '.well-known/agent-skills/index.json' ),
 						'type'  => 'application/json',
-						'title' => 'Agent skills',
+						'title' => __( 'Agent skills', 'conversion-agent-discovery' ),
 					),
 					array(
 						'href'  => self::home_url( '.well-known/agent-skills/discovery-0.2.schema.json' ),
 						'type'  => 'application/schema+json',
-						'title' => 'Agent skills local schema',
+						'title' => __( 'Agent skills local schema', 'conversion-agent-discovery' ),
 					),
 				),
 				'item'         => array(
 					array(
 						'href'  => self::sitemap_url(),
 						'type'  => 'application/xml',
-						'title' => 'Sitemap',
+						'title' => __( 'Sitemap', 'conversion-agent-discovery' ),
 					),
 				),
 			),
@@ -264,7 +268,7 @@ class Conversion_Agent_Discovery_Routes {
 			$linkset[0]['service-desc'][] = array(
 				'href'  => self::home_url( 'graphql' ),
 				'type'  => 'application/graphql-response+json',
-				'title' => 'WPGraphQL endpoint',
+				'title' => __( 'WPGraphQL endpoint', 'conversion-agent-discovery' ),
 			);
 		}
 
@@ -298,9 +302,13 @@ class Conversion_Agent_Discovery_Routes {
 
 		return array(
 			'$schema'    => self::home_url( '.well-known/agent-skills/discovery-0.2.schema.json' ),
-			'name'        => $name . ' Agent Skills',
+			'name'        => sprintf(
+				/* translators: %s: site name. */
+				__( '%s Agent Skills', 'conversion-agent-discovery' ),
+				$name
+			),
 			'version'     => CONVERSION_AGENT_DISCOVERY_VERSION,
-			'description' => 'Read-only public skills for discovering and reading site content.',
+			'description' => __( 'Read-only public skills for discovering and reading site content.', 'conversion-agent-discovery' ),
 			'publisher'   => array(
 				'name' => $name,
 				'url'  => self::clean_url( $settings['publisher_url'] ?? self::home_url() ),
@@ -316,15 +324,15 @@ class Conversion_Agent_Discovery_Routes {
 	 */
 	public static function agent_skills_schema() {
 		return array(
-			'title'                => 'Agent Skills Discovery 0.2',
-			'description'          => 'Local schema for the Agent Skills discovery document generated by Conversion Agent Discovery.',
+			'title'                => __( 'Agent Skills Discovery 0.2', 'conversion-agent-discovery' ),
+			'description'          => __( 'Local schema for the Agent Skills discovery document generated by Conversion Agent Discovery.', 'conversion-agent-discovery' ),
 			'type'                 => 'object',
 			'required'             => array( '$schema', 'name', 'version', 'description', 'publisher', 'skills' ),
 			'additionalProperties' => true,
 			'properties'           => array(
 				'$schema'    => array(
 					'type'        => 'string',
-					'description' => 'Canonical URL for this local schema document.',
+					'description' => __( 'Canonical URL for this local schema document.', 'conversion-agent-discovery' ),
 				),
 				'name'       => array(
 					'type' => 'string',
@@ -413,20 +421,24 @@ class Conversion_Agent_Discovery_Routes {
 			'',
 			'# ' . $skill['title'],
 			'',
-			'Use this skill when an agent needs to work with public content from ' . $name . '.',
+			sprintf(
+				/* translators: %s: site name. */
+				__( 'Use this skill when an agent needs to work with public content from %s.', 'conversion-agent-discovery' ),
+				$name
+			),
 			'',
-			'## Behavior',
-			'- This skill is read-only.',
-			'- Use only public, published content.',
-			'- Do not submit forms, authenticate, edit content, or perform transactions.',
+			'## ' . __( 'Behavior', 'conversion-agent-discovery' ),
+			'- ' . __( 'This skill is read-only.', 'conversion-agent-discovery' ),
+			'- ' . __( 'Use only public, published content.', 'conversion-agent-discovery' ),
+			'- ' . __( 'Do not submit forms, authenticate, edit content, or perform transactions.', 'conversion-agent-discovery' ),
 			'',
 			'## Endpoint',
 			'- ' . $skill['endpoint'],
 			'',
-			'## Input',
+			'## ' . __( 'Input', 'conversion-agent-discovery' ),
 			$skill['input'],
 			'',
-			'## Output',
+			'## ' . __( 'Output', 'conversion-agent-discovery' ),
 			$skill['output'],
 		);
 
@@ -446,47 +458,47 @@ class Conversion_Agent_Discovery_Routes {
 			'read-site-content' => array(
 				'name'        => 'read-site-content',
 				'id'          => 'read_site_content',
-				'title'       => 'Read Site Content',
-				'description' => 'Read public pages and posts from the site as clean Markdown.',
+				'title'       => __( 'Read Site Content', 'conversion-agent-discovery' ),
+				'description' => __( 'Read public pages and posts from the site as clean Markdown.', 'conversion-agent-discovery' ),
 				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/content' ),
-				'input'       => '- Provide `id`, `url`, or `slug` for a public post or page.',
-				'output'      => '- Returns title, URL, excerpt, dates, and Markdown content.',
+				'input'       => '- ' . __( 'Provide `id`, `url`, or `slug` for a public post or page.', 'conversion-agent-discovery' ),
+				'output'      => '- ' . __( 'Returns title, URL, excerpt, dates, and Markdown content.', 'conversion-agent-discovery' ),
 			),
 			'search-site'       => array(
 				'name'        => 'search-site',
 				'id'          => 'search_site',
-				'title'       => 'Search Site',
-				'description' => 'Search public WordPress content by query string.',
+				'title'       => __( 'Search Site', 'conversion-agent-discovery' ),
+				'description' => __( 'Search public WordPress content by query string.', 'conversion-agent-discovery' ),
 				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/search' ),
-				'input'       => '- Provide `query` and optional `per_page`.',
-				'output'      => '- Returns matching public content summaries.',
+				'input'       => '- ' . __( 'Provide `query` and optional `per_page`.', 'conversion-agent-discovery' ),
+				'output'      => '- ' . __( 'Returns matching public content summaries.', 'conversion-agent-discovery' ),
 			),
 			'read-article'      => array(
 				'name'        => 'read-article',
 				'id'          => 'read_article',
-				'title'       => 'Read Article',
-				'description' => 'Read a public article by URL, slug, or WordPress ID.',
+				'title'       => __( 'Read Article', 'conversion-agent-discovery' ),
+				'description' => __( 'Read a public article by URL, slug, or WordPress ID.', 'conversion-agent-discovery' ),
 				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/content' ),
-				'input'       => '- Provide article `id`, `url`, or `slug`.',
-				'output'      => '- Returns article metadata and Markdown body.',
+				'input'       => '- ' . __( 'Provide article `id`, `url`, or `slug`.', 'conversion-agent-discovery' ),
+				'output'      => '- ' . __( 'Returns article metadata and Markdown body.', 'conversion-agent-discovery' ),
 			),
 			'list-recent-posts' => array(
 				'name'        => 'list-recent-posts',
 				'id'          => 'list_recent_posts',
-				'title'       => 'List Recent Posts',
-				'description' => 'List recent public posts and pages exposed by the site.',
+				'title'       => __( 'List Recent Posts', 'conversion-agent-discovery' ),
+				'description' => __( 'List recent public posts and pages exposed by the site.', 'conversion-agent-discovery' ),
 				'endpoint'    => self::rest_url( 'conversion-agent-discovery/v1/recent' ),
-				'input'       => '- Optionally provide `per_page`, capped at 20.',
-				'output'      => '- Returns recent public content summaries.',
+				'input'       => '- ' . __( 'Optionally provide `per_page`, capped at 20.', 'conversion-agent-discovery' ),
+				'output'      => '- ' . __( 'Returns recent public content summaries.', 'conversion-agent-discovery' ),
 			),
 			'contact-conversion' => array(
 				'name'        => 'contact-conversion',
 				'id'          => 'contact_conversion',
-				'title'       => 'Contact Conversion',
-				'description' => 'Open the public contact page without submitting forms automatically.',
+				'title'       => __( 'Contact Conversion', 'conversion-agent-discovery' ),
+				'description' => __( 'Open the public contact page without submitting forms automatically.', 'conversion-agent-discovery' ),
 				'endpoint'    => $contact_url,
-				'input'       => '- No automated form submission is supported.',
-				'output'      => '- Returns the public contact URL and requires human confirmation for any form action.',
+				'input'       => '- ' . __( 'No automated form submission is supported.', 'conversion-agent-discovery' ),
+				'output'      => '- ' . __( 'Returns the public contact URL and requires human confirmation for any form action.', 'conversion-agent-discovery' ),
 			),
 		);
 	}

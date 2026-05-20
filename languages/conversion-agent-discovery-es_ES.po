@@ -1,0 +1,468 @@
+# Conversion Agent Discovery translations.
+# Copyright (C) 2026 Conversion
+# This file is distributed under the same license as the Conversion Agent Discovery package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Conversion Agent Discovery 0.1.10\n"
+"Report-Msgid-Bugs-To: https://github.com/agencia-conversion/conversion-agent-discovery/issues\n"
+"POT-Creation-Date: 2026-05-20 00:00-0300\n"
+"PO-Revision-Date: 2026-05-20 00:00-0300\n"
+"Last-Translator: Conversion <contato@conversion.com.br>\n"
+"Language-Team: Español <contato@conversion.com.br>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Conversion Agent Discovery i18n builder\n"
+
+msgid "Conversion Agent Discovery"
+msgstr "Conversion Agent Discovery"
+
+msgid "Conversion"
+msgstr "Conversion"
+
+msgid "Agent discovery for WordPress"
+msgstr "Descubrimiento de agentes para WordPress"
+
+msgid "Expose public, read-only discovery surfaces for AI agents without publishing fake capabilities."
+msgstr "Exponga superficies de descubrimiento públicas read-only para agentes de IA sin publicar capacidades falsas."
+
+msgid "Enabled"
+msgstr "Activado"
+
+msgid "Disabled"
+msgstr "Desactivado"
+
+msgid "Core Controls"
+msgstr "Controles principales"
+
+msgid "The global switch is the fastest rollback path. Turning it off restores the normal WordPress behavior for public requests."
+msgstr "El cambio global es la ruta de reversión más rápida. Al desactivarlo se restaura el comportamiento normal de WordPress para solicitudes públicas."
+
+msgid "Global Kill Switch"
+msgstr "Interruptor de apagado global"
+
+msgid "Active"
+msgstr "Activo"
+
+msgid "Paused"
+msgstr "En pausa"
+
+msgid "Controls every Conversion Agent Discovery route, header, REST endpoint, Markdown response, and browser tool."
+msgstr "Controla cada ruta Conversion Agent Discovery, encabezado, punto final REST, respuesta de Markdown y herramienta de navegador."
+
+msgid "Rollback and operational safety."
+msgstr "Rollback y seguridad operativa."
+
+msgid "Modules"
+msgstr "Módulos"
+
+msgid "Each module maps to a concrete public capability used by agent discovery scanners and AI crawlers."
+msgstr "Cada módulo se asigna a una capacidad pública concreta utilizada por los escáneres de descubrimiento de agentes y los rastreadores de IA."
+
+msgid "Content Signals"
+msgstr "Content Signals"
+
+msgid "Adds an explicit Content-Signal line to robots.txt and Markdown responses."
+msgstr "Agrega una línea Content-Signal explícita a las respuestas robots.txt y Markdown."
+
+msgid "Content policy discovery."
+msgstr "Descubrimiento de políticas de contenido."
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "Publishes /llms.txt and /.well-known/llms.txt with site context and agent resources."
+msgstr "Publica /llms.txt y /.well-known/llms.txt con contexto del sitio y recursos del agente."
+
+msgid "Agent-readable site overview."
+msgstr "Descripción general del sitio legible por el agente."
+
+msgid "API Catalog"
+msgstr "API Catalog"
+
+msgid "Publishes a linkset catalog pointing to WordPress REST, Conversion Agent Discovery REST, sitemap, llms.txt, Agent Skills, and WPGraphQL when active."
+msgstr "Publica un catálogo de conjunto de enlaces que apunta a WordPress REST, Conversion Agent Discovery REST, mapa del sitio, llms.txt, Agent Skills y WPGraphQL cuando está activo."
+
+msgid "Structured API discovery."
+msgstr "Descubrimiento de API estructurado."
+
+msgid "Agent Skills v0.2"
+msgstr "Agent Skills v0.2"
+
+msgid "Publishes a skills index and virtual SKILL.md files for read-only content discovery, search, article reading, recent posts, and contact handoff."
+msgstr "Publica un índice de habilidades y archivos virtuales SKILL.md para el descubrimiento de contenido, búsqueda, lectura de artículos, publicaciones recientes y transferencia de contactos de read-only."
+
+msgid "Agent capability discovery."
+msgstr "Descubrimiento de capacidades del agente."
+
+msgid "Markdown Negotiation"
+msgstr "Markdown Negotiation"
+
+msgid "Returns clean Markdown with frontmatter only when a public GET or HEAD request asks for Accept: text/markdown."
+msgstr "Devuelve Markdown limpio con frontmatter solo cuando una solicitud pública GET o HEAD solicita Aceptar: text/markdown."
+
+msgid "Content readability and agent parsing quality."
+msgstr "Legibilidad del contenido y calidad del análisis del agente."
+
+msgid "WebMCP Read-only Tools"
+msgstr "Herramientas de solo lectura WebMCP"
+
+msgid "Registers browser tools when navigator.modelContext exists. Tools only search, list, read public content, get context, or return the contact URL."
+msgstr "Registra las herramientas del navegador cuando existe navigator.modelContext. Las herramientas solo buscan, enumeran, leen contenido público, obtienen contexto o devuelven la URL del contacto."
+
+msgid "Browser-agent integration when WebMCP is available."
+msgstr "Integración navegador-agente cuando WebMCP esté disponible."
+
+msgid "Save Conversion Agent Discovery Settings"
+msgstr "Guardar configuración de Conversion Agent Discovery"
+
+msgid "Protocol Boundaries"
+msgstr "Límites del protocolo"
+
+msgid "These checks stay unpublished until the site has the real service behind them."
+msgstr "Estas comprobaciones permanecen inéditas hasta que el sitio tenga el servicio real detrás de ellas."
+
+msgid "MCP Server Card"
+msgstr "MCP Server Card"
+
+msgid "Not published"
+msgstr "No publicado"
+
+msgid "Conversion Agent Discovery currently implements WebMCP in the browser, not a remote MCP server endpoint with transports, auth, and server capabilities."
+msgstr "Actualmente, Conversion Agent Discovery implementa WebMCP en el navegador, no un punto final de servidor MCP remoto con capacidades de transporte, autenticación y servidor."
+
+msgid "OAuth Discovery"
+msgstr "OAuth Descubrimiento"
+
+msgid "OAuth metadata should only exist when the site exposes real OAuth authorization and protected-resource behavior."
+msgstr "Los metadatos de OAuth solo deben existir cuando el sitio expone una autorización real de OAuth y un comportamiento de recursos protegidos."
+
+msgid "A2A Agent Card"
+msgstr "Tarjeta de agente A2A"
+
+msgid "A2A requires an actual agent service. Conversion Agent Discovery only exposes public read resources in this release."
+msgstr "A2A requiere un servicio de agente real. Conversion Agent Discovery solo expone recursos de lectura públicos en esta versión."
+
+msgid "Commerce Metadata"
+msgstr "Metadatos comerciales"
+
+msgid "Payment, checkout, or transaction metadata is intentionally absent unless a safe commerce flow is implemented."
+msgstr "Los metadatos de pago, pago o transacción están intencionalmente ausentes a menos que se implemente un flujo comercial seguro."
+
+msgid "Diagnostics"
+msgstr "Diagnóstico"
+
+msgid "Use these generated URLs and commands to validate the public behavior after saving settings or purging cache."
+msgstr "Utilice estas URL y comandos generados para validar el comportamiento público después de guardar la configuración o borrar el caché."
+
+msgid "Generated Endpoints"
+msgstr "Puntos finales generados"
+
+msgid "Checklist"
+msgstr "Lista de verificación"
+
+msgid "Markdown negotiation enabled"
+msgstr "Negociación de rebajas habilitada"
+
+msgid "Agent Skills v0.2 enabled"
+msgstr "Agent Skills v0.2 habilitado"
+
+msgid "WebMCP tools enabled"
+msgstr "Herramientas WebMCP habilitadas"
+
+msgid "WPGraphQL detected"
+msgstr "WPGraphQL detectado"
+
+msgid "Link headers enabled"
+msgstr "Encabezados de enlace habilitados"
+
+msgid "Manual Validation"
+msgstr "Validación manual"
+
+msgid "Use the generated endpoints and curl commands below to validate read-only agent discovery behavior with your preferred tools."
+msgstr "Utilice los puntos finales generados y los comandos curl a continuación para validar el comportamiento de descubrimiento del agente read-only con sus herramientas preferidas."
+
+msgid "curl Commands"
+msgstr "Comandos curl"
+
+msgid "GitHub release"
+msgstr "Lanzamiento de GitHub"
+
+msgid "by Conversion"
+msgstr "por conversión"
+
+msgid "URL / status"
+msgstr "URL/estado"
+
+msgid "Discovery impact"
+msgstr "Impacto del descubrimiento"
+
+msgid "Site Metadata"
+msgstr "Metadatos del sitio"
+
+msgid "Used in discovery"
+msgstr "Utilizado en el descubrimiento"
+
+msgid "These fields identify the publisher, canonical site URL, and human contact handoff used in llms.txt, Agent Skills, and REST context."
+msgstr "Estos campos identifican el editor, la URL del sitio canónico y la transferencia de contacto humano utilizados en llms.txt, Agent Skills y el contexto REST."
+
+msgid "Publisher name"
+msgstr "Nombre del editor"
+
+msgid "Publisher URL"
+msgstr "URL del editor"
+
+msgid "Contact URL"
+msgstr "URL de contacto"
+
+msgid "WPGraphQL"
+msgstr "WPGraphQL"
+
+msgid "Not detected"
+msgstr "No detectado"
+
+msgid "WPGraphQL is optional. When it is active and this toggle is enabled, Conversion Agent Discovery advertises the GraphQL endpoint in the API Catalog."
+msgstr "WPGraphQL es opcional. Cuando está activo y esta opción está habilitada, Conversion Agent Discovery anuncia el punto final GraphQL en API Catalog."
+
+msgid "Detected endpoint"
+msgstr "Punto final detectado"
+
+msgid "Recommendation"
+msgstr "Recomendación"
+
+msgid "Install WPGraphQL from WordPress.org"
+msgstr "Instale WPGraphQL desde WordPress.org"
+
+msgid "Optional API discoverability. Not required for WebMCP or Markdown."
+msgstr "Descubrimiento de API opcional. No es necesario para WebMCP o Markdown."
+
+msgid "Advertise when active"
+msgstr "Anunciarse cuando esté activo"
+
+msgid "AI training"
+msgstr "entrenamiento de IA"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "AI input"
+msgstr "entrada de IA"
+
+msgid "Exposed public post types"
+msgstr "Tipos de publicaciones públicas expuestas"
+
+msgid "Only published public content from these types can be returned by REST and WebMCP tools."
+msgstr "Las herramientas REST y WebMCP solo pueden devolver contenido público publicado de estos tipos."
+
+msgid "yes"
+msgstr "Sí"
+
+msgid "no"
+msgstr "No"
+
+msgid "Missing search query."
+msgstr "Falta consulta de búsqueda."
+
+msgid "Public content not found."
+msgstr "Contenido público no encontrado."
+
+msgid "Open the public contact page. Conversion Agent Discovery does not submit forms automatically."
+msgstr "Abra la página de contacto público. Conversion Agent Discovery no envía formularios automáticamente."
+
+msgid "Conversion Agent Discovery read tools are disabled."
+msgstr "Las herramientas de lectura Conversion Agent Discovery están deshabilitadas."
+
+msgid "Agent-readable overview for %s."
+msgstr "Descripción general legible por el agente para %s."
+
+msgid "Site"
+msgstr "Sitio"
+
+msgid "Home"
+msgstr "Hogar"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Search example"
+msgstr "Ejemplo de búsqueda"
+
+msgid "Agent resources"
+msgstr "Recursos del agente"
+
+msgid "API catalog"
+msgstr "catálogo API"
+
+msgid "Agent skills"
+msgstr "Habilidades del agente"
+
+msgid "Agent skills schema"
+msgstr "Esquema de habilidades del agente"
+
+msgid "Sitemap"
+msgstr "Mapa del sitio"
+
+msgid "Content signals"
+msgstr "Señales de contenido"
+
+msgid "Usage"
+msgstr "Uso"
+
+msgid "Public pages support Markdown negotiation with `Accept: text/markdown` when enabled."
+msgstr "Las páginas públicas admiten la negociación de Markdown con `Accept: text/markdown` cuando están habilitadas."
+
+msgid "Tools and routes are read-only in v1."
+msgstr "Las herramientas y rutas son read-only en v1."
+
+msgid "WordPress REST API"
+msgstr "WordPress REST API"
+
+msgid "Conversion Agent Discovery read-only REST API"
+msgstr "Conversion Agent Discovery read-only REST API"
+
+msgid "REST API index"
+msgstr "Índice REST API"
+
+msgid "Conversion Agent Discovery site context"
+msgstr "Contexto del sitio Conversion Agent Discovery"
+
+msgid "Agent skills local schema"
+msgstr "Esquema local de habilidades del agente"
+
+msgid "WPGraphQL endpoint"
+msgstr "Punto final WPGraphQL"
+
+msgid "%s Agent Skills"
+msgstr "%s Agent Skills"
+
+msgid "Read-only public skills for discovering and reading site content."
+msgstr "Habilidades públicas de solo lectura para descubrir y leer contenido del sitio."
+
+msgid "Agent Skills Discovery 0.2"
+msgstr "Agent Skills Discovery 0.2"
+
+msgid "Local schema for the Agent Skills discovery document generated by Conversion Agent Discovery."
+msgstr "Esquema local para el documento de descubrimiento Agent Skills generado por Conversion Agent Discovery."
+
+msgid "Canonical URL for this local schema document."
+msgstr "URL canónica para este documento de esquema local."
+
+msgid "Use this skill when an agent needs to work with public content from %s."
+msgstr "Utilice esta habilidad cuando un agente necesite trabajar con contenido público de %s."
+
+msgid "Behavior"
+msgstr "Comportamiento"
+
+msgid "This skill is read-only."
+msgstr "Esta habilidad es read-only."
+
+msgid "Use only public, published content."
+msgstr "Utilice únicamente contenido público y publicado."
+
+msgid "Do not submit forms, authenticate, edit content, or perform transactions."
+msgstr "No envíe formularios, se autentique, edite contenido ni realice transacciones."
+
+msgid "Input"
+msgstr "Aporte"
+
+msgid "Output"
+msgstr "Producción"
+
+msgid "Read Site Content"
+msgstr "Leer el contenido del sitio"
+
+msgid "Read public pages and posts from the site as clean Markdown."
+msgstr "Lea páginas públicas y publicaciones del sitio como Markdown limpio."
+
+msgid "Provide `id`, `url`, or `slug` for a public post or page."
+msgstr "Proporcione `id`, `url` o `slug` para una publicación o página pública."
+
+msgid "Returns title, URL, excerpt, dates, and Markdown content."
+msgstr "Devuelve título, URL, extracto, fechas y contenido de Markdown."
+
+msgid "Search Site"
+msgstr "Buscar sitio"
+
+msgid "Search public WordPress content by query string."
+msgstr "Busque contenido público de WordPress por cadena de consulta."
+
+msgid "Provide `query` and optional `per_page`."
+msgstr "Proporcione `query` y `per_page` opcional."
+
+msgid "Returns matching public content summaries."
+msgstr "Devuelve resúmenes de contenido público coincidentes."
+
+msgid "Read Article"
+msgstr "Leer artículo"
+
+msgid "Read a public article by URL, slug, or WordPress ID."
+msgstr "Lea un artículo público por URL, slug o ID de WordPress."
+
+msgid "Provide article `id`, `url`, or `slug`."
+msgstr "Proporcione el artículo `id`, `url` o `slug`."
+
+msgid "Returns article metadata and Markdown body."
+msgstr "Devuelve los metadatos del artículo y el cuerpo de Markdown."
+
+msgid "List Recent Posts"
+msgstr "Listar publicaciones recientes"
+
+msgid "List recent public posts and pages exposed by the site."
+msgstr "Enumere publicaciones públicas recientes y páginas expuestas por el sitio."
+
+msgid "Optionally provide `per_page`, capped at 20."
+msgstr "Opcionalmente, proporcione `per_page`, con un límite de 20."
+
+msgid "Returns recent public content summaries."
+msgstr "Devuelve resúmenes de contenido público reciente."
+
+msgid "Contact Conversion"
+msgstr "Conversión de contacto"
+
+msgid "Open the public contact page without submitting forms automatically."
+msgstr "Abra la página de contacto pública sin enviar formularios automáticamente."
+
+msgid "No automated form submission is supported."
+msgstr "No se admite el envío automático de formularios."
+
+msgid "Returns the public contact URL and requires human confirmation for any form action."
+msgstr "Devuelve la URL del contacto público y requiere confirmación humana para cualquier acción del formulario."
+
+msgid "Request failed"
+msgstr "Solicitud fallida"
+
+msgid "Search public posts and pages on this WordPress site."
+msgstr "Busque publicaciones y páginas públicas en este sitio de WordPress."
+
+msgid "Search query."
+msgstr "Consulta de búsqueda."
+
+msgid "Maximum results to return."
+msgstr "Máximos resultados a devolver."
+
+msgid "Read a public post or page by id, URL, or slug."
+msgstr "Lea una publicación o página pública por identificación, URL o slug."
+
+msgid "WordPress post ID."
+msgstr "ID de publicación de WordPress."
+
+msgid "Canonical public URL."
+msgstr "URL pública canónica."
+
+msgid "Post or page slug."
+msgstr "Publicación o slug de página."
+
+msgid "Optional post type, usually post or page."
+msgstr "Tipo de publicación opcional, generalmente publicación o página."
+
+msgid "List recent public posts and pages from this WordPress site."
+msgstr "Enumere publicaciones y páginas públicas recientes de este sitio de WordPress."
+
+msgid "Get public Conversion Agent Discovery context, discovery URLs, and content policy for this site."
+msgstr "Obtenga contexto público Conversion Agent Discovery, URL de descubrimiento y política de contenido para este sitio."
+
+msgid "Get the public contact URL. This tool does not submit forms."
+msgstr "Obtenga la URL de contacto público. Esta herramienta no envía formularios."

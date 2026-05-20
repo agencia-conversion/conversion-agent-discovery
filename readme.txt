@@ -4,7 +4,7 @@ Tags: ai, agents, markdown, discovery, llms-txt
 Requires at least: 5.9
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.9
+Stable tag: 0.1.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,11 @@ No. Normal browser and crawler requests continue to receive HTML. Markdown is re
 No. Conversion Agent Discovery publishes only real read-only resources. It does not publish an MCP Server Card unless a real MCP server exists.
 
 == Changelog ==
+
+= 0.1.10 =
+* Add bundled translations for 10 WordPress locales: Brazilian Portuguese, European Portuguese, Spanish, French, German, Italian, Dutch, Russian, Japanese, and Simplified Chinese.
+* Add a generated POT catalog and load bundled translation files from `/languages`.
+* Move WebMCP tool descriptions into translatable PHP configuration while keeping tool names and endpoints stable.
 
 = 0.1.9 =
 * Serve the Agent Skills discovery schema locally from the WordPress site.

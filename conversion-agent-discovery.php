@@ -3,7 +3,7 @@
  * Plugin Name: Conversion Agent Discovery
  * Plugin URI: https://github.com/agencia-conversion/conversion-agent-discovery
  * Description: Read-only agent discovery surfaces for WordPress: Markdown negotiation, llms.txt, API catalog, agent skills, WebMCP, and content signals.
- * Version: 0.1.9
+ * Version: 0.1.10
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Author: Conversion
@@ -11,6 +11,7 @@
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: conversion-agent-discovery
+ * Domain Path: /languages
  *
  * @package Conversion_Agent_Discovery
  */
@@ -19,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CONVERSION_AGENT_DISCOVERY_VERSION', '0.1.9' );
+define( 'CONVERSION_AGENT_DISCOVERY_VERSION', '0.1.10' );
 define( 'CONVERSION_AGENT_DISCOVERY_FILE', __FILE__ );
 define( 'CONVERSION_AGENT_DISCOVERY_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CONVERSION_AGENT_DISCOVERY_URL', plugin_dir_url( __FILE__ ) );

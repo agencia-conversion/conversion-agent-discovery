@@ -45,6 +45,93 @@ class Conversion_Agent_Discovery_WebMCP {
 				'context' => esc_url_raw( rest_url( 'conversion-agent-discovery/v1/context' ) ),
 				'contact' => esc_url_raw( rest_url( 'conversion-agent-discovery/v1/contact' ) ),
 			),
+			'messages'  => array(
+				'request_failed' => __( 'Request failed', 'conversion-agent-discovery' ),
+			),
+			'tools'     => array(
+				array(
+					'name'        => 'search_posts',
+					'description' => __( 'Search public posts and pages on this WordPress site.', 'conversion-agent-discovery' ),
+					'inputSchema' => array(
+						'type'       => 'object',
+						'properties' => array(
+							'query'    => array(
+								'type'        => 'string',
+								'description' => __( 'Search query.', 'conversion-agent-discovery' ),
+							),
+							'per_page' => array(
+								'type'        => 'integer',
+								'minimum'     => 1,
+								'maximum'     => 20,
+								'description' => __( 'Maximum results to return.', 'conversion-agent-discovery' ),
+							),
+						),
+						'required'   => array( 'query' ),
+					),
+					'endpoint'    => 'search',
+				),
+				array(
+					'name'        => 'read_post',
+					'description' => __( 'Read a public post or page by id, URL, or slug.', 'conversion-agent-discovery' ),
+					'inputSchema' => array(
+						'type'       => 'object',
+						'properties' => array(
+							'id'   => array(
+								'type'        => 'integer',
+								'description' => __( 'WordPress post ID.', 'conversion-agent-discovery' ),
+							),
+							'url'  => array(
+								'type'        => 'string',
+								'format'      => 'uri',
+								'description' => __( 'Canonical public URL.', 'conversion-agent-discovery' ),
+							),
+							'slug' => array(
+								'type'        => 'string',
+								'description' => __( 'Post or page slug.', 'conversion-agent-discovery' ),
+							),
+							'type' => array(
+								'type'        => 'string',
+								'description' => __( 'Optional post type, usually post or page.', 'conversion-agent-discovery' ),
+							),
+						),
+					),
+					'endpoint'    => 'content',
+				),
+				array(
+					'name'        => 'list_recent_posts',
+					'description' => __( 'List recent public posts and pages from this WordPress site.', 'conversion-agent-discovery' ),
+					'inputSchema' => array(
+						'type'       => 'object',
+						'properties' => array(
+							'per_page' => array(
+								'type'        => 'integer',
+								'minimum'     => 1,
+								'maximum'     => 20,
+								'description' => __( 'Maximum results to return.', 'conversion-agent-discovery' ),
+							),
+						),
+					),
+					'endpoint'    => 'recent',
+				),
+				array(
+					'name'        => 'get_site_context',
+					'description' => __( 'Get public Conversion Agent Discovery context, discovery URLs, and content policy for this site.', 'conversion-agent-discovery' ),
+					'inputSchema' => array(
+						'type'       => 'object',
+						'properties' => array(),
+					),
+					'endpoint'    => 'context',
+				),
+				array(
+					'name'        => 'contact_conversion',
+					'description' => __( 'Get the public contact URL. This tool does not submit forms.', 'conversion-agent-discovery' ),
+					'inputSchema' => array(
+						'type'       => 'object',
+						'properties' => array(),
+					),
+					'endpoint'    => 'contact',
+				),
+			),
 		);
 
 		wp_enqueue_script(

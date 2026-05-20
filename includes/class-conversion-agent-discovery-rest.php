@@ -226,7 +226,7 @@ class Conversion_Agent_Discovery_REST {
 				'contact_url'        => esc_url_raw( $settings['contact_url'] ?? home_url( 'contato/' ) ),
 				'human_confirmation' => true,
 				'actions'            => array(),
-				'note'               => 'Open the public contact page. Conversion Agent Discovery does not submit forms automatically.',
+				'note'               => __( 'Open the public contact page. Conversion Agent Discovery does not submit forms automatically.', 'conversion-agent-discovery' ),
 			)
 		);
 	}

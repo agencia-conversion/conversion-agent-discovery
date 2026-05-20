@@ -1,6 +1,6 @@
 {
   "name": "conversion/conversion-agent-discovery",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Read-only agent discovery surfaces for WordPress: Markdown negotiation, llms.txt, API catalog, agent skills, WebMCP, and content signals.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",

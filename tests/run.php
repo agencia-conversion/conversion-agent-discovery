@@ -1,7 +1,9 @@
 <?php
 define( 'CONVERSION_AGENT_DISCOVERY_TESTING', true );
-define( 'CONVERSION_AGENT_DISCOVERY_VERSION', '0.1.9' );
+define( 'CONVERSION_AGENT_DISCOVERY_VERSION', '0.1.10' );
 define( 'CONVERSION_AGENT_DISCOVERY_URL', 'https://example.com/wp-content/plugins/conversion-agent-discovery/' );
+define( 'CONVERSION_AGENT_DISCOVERY_FILE', dirname( __DIR__ ) . '/conversion-agent-discovery.php' );
+define( 'CONVERSION_AGENT_DISCOVERY_PATH', dirname( __DIR__ ) . '/' );
 define( 'ABSPATH', __DIR__ . '/' );
 
 function wp_strip_all_tags( $text ) {
@@ -55,6 +57,23 @@ function current_user_can( $capability ) {
 function __( $text, $domain = 'default' ) {
 	unset( $domain );
 	return $text;
+}
+
+function determine_locale() {
+	return 'pt_BR';
+}
+
+function get_locale() {
+	return 'pt_BR';
+}
+
+function load_textdomain( $domain, $mofile ) {
+	unset( $domain, $mofile );
+	return true;
+}
+
+function plugin_basename( $file ) {
+	return basename( dirname( $file ) ) . '/' . basename( $file );
 }
 
 function esc_html_e( $text, $domain = 'default' ) {
@@ -134,7 +153,9 @@ function get_post_types( $args = array(), $output = 'names' ) {
 require_once __DIR__ . '/../includes/class-conversion-agent-discovery-settings.php';
 require_once __DIR__ . '/../includes/class-conversion-agent-discovery-markdown.php';
 require_once __DIR__ . '/../includes/class-conversion-agent-discovery-routes.php';
+require_once __DIR__ . '/../includes/class-conversion-agent-discovery-webmcp.php';
 require_once __DIR__ . '/../admin/class-conversion-agent-discovery-admin.php';
+require_once __DIR__ . '/../includes/class-conversion-agent-discovery.php';
 
 $failures = 0;
 
@@ -202,7 +223,8 @@ assert_true( false !== strpos( $llms, 'Content-Signal: ai-train=yes, search=yes,
 ob_start();
 Conversion_Agent_Discovery_Admin::render_page();
 $admin_absent = ob_get_clean();
-assert_true( false !== strpos( $admin_absent, 'Conversion Agent Discovery v0.1.9' ), 'admin footer exposes version' );
+assert_true( Conversion_Agent_Discovery::load_textdomain(), 'plugin loads bundled textdomain' );
+assert_true( false !== strpos( $admin_absent, 'Conversion Agent Discovery v0.1.10' ), 'admin footer exposes version' );
 assert_true( false !== strpos( $admin_absent, 'assets/conversion-logo-white.svg' ), 'admin header includes Conversion logo for dark background' );
 assert_true( false !== strpos( $admin_absent, 'assets/conversion-logo.svg' ), 'admin footer includes Conversion logo for light background' );
 assert_true( false !== strpos( $admin_absent, 'https://conversion.ag/' ), 'admin credits Conversion agency URL' );

@@ -1,0 +1,690 @@
+# Conversion Agent Discovery translations.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Conversion Agent Discovery package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Conversion Agent Discovery 0.1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-20 09:53-0300\n"
+"PO-Revision-Date: 2026-05-20 00:00-0300\n"
+"Last-Translator: Conversion <contato@conversion.com.br>\n"
+"Language-Team: Conversion <contato@conversion.com.br>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin/class-conversion-agent-discovery-admin.php:34
+#: admin/class-conversion-agent-discovery-admin.php:35
+#: admin/class-conversion-agent-discovery-admin.php:111
+msgid "Conversion Agent Discovery"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:107
+#: admin/class-conversion-agent-discovery-admin.php:108
+#: admin/class-conversion-agent-discovery-admin.php:296
+#: admin/class-conversion-agent-discovery-admin.php:297
+msgid "Conversion"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:113
+msgid "Agent discovery for WordPress"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:114
+msgid ""
+"Expose public, read-only discovery surfaces for AI agents without publishing "
+"fake capabilities."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:117
+#: admin/class-conversion-agent-discovery-admin.php:335
+#: admin/class-conversion-agent-discovery-admin.php:579
+msgid "Enabled"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:117
+#: admin/class-conversion-agent-discovery-admin.php:579
+msgid "Disabled"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:127
+msgid "Core Controls"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:128
+msgid ""
+"The global switch is the fastest rollback path. Turning it off restores the "
+"normal WordPress behavior for public requests."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:134
+msgid "Global Kill Switch"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:137
+#: admin/class-conversion-agent-discovery-admin.php:381
+msgid "Active"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:137
+msgid "Paused"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:139
+msgid ""
+"Controls every Conversion Agent Discovery route, header, REST endpoint, "
+"Markdown response, and browser tool."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:140
+msgid "Rollback and operational safety."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:150
+msgid "Modules"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:151
+msgid ""
+"Each module maps to a concrete public capability used by agent discovery "
+"scanners and AI crawlers."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:157
+msgid "Content Signals"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:162
+msgid ""
+"Adds an explicit Content-Signal line to robots.txt and Markdown responses."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:164
+msgid "Content policy discovery."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:170
+msgid "llms.txt"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:175
+msgid ""
+"Publishes /llms.txt and /.well-known/llms.txt with site context and agent "
+"resources."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:177
+msgid "Agent-readable site overview."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:182
+msgid "API Catalog"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:187
+msgid ""
+"Publishes a linkset catalog pointing to WordPress REST, Conversion Agent "
+"Discovery REST, sitemap, llms.txt, Agent Skills, and WPGraphQL when active."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:189
+msgid "Structured API discovery."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:194
+msgid "Agent Skills v0.2"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:199
+msgid ""
+"Publishes a skills index and virtual SKILL.md files for read-only content "
+"discovery, search, article reading, recent posts, and contact handoff."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:201
+msgid "Agent capability discovery."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:206
+msgid "Markdown Negotiation"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:211
+msgid ""
+"Returns clean Markdown with frontmatter only when a public GET or HEAD "
+"request asks for Accept: text/markdown."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:213
+msgid "Content readability and agent parsing quality."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:218
+msgid "WebMCP Read-only Tools"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:223
+msgid ""
+"Registers browser tools when navigator.modelContext exists. Tools only "
+"search, list, read public content, get context, or return the contact URL."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:225
+msgid "Browser-agent integration when WebMCP is available."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:234
+msgid "Save Conversion Agent Discovery Settings"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:239
+msgid "Protocol Boundaries"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:240
+msgid ""
+"These checks stay unpublished until the site has the real service behind "
+"them."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:243
+msgid "MCP Server Card"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:243
+#: admin/class-conversion-agent-discovery-admin.php:244
+#: admin/class-conversion-agent-discovery-admin.php:245
+#: admin/class-conversion-agent-discovery-admin.php:246
+msgid "Not published"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:243
+msgid ""
+"Conversion Agent Discovery currently implements WebMCP in the browser, not a "
+"remote MCP server endpoint with transports, auth, and server capabilities."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:244
+msgid "OAuth Discovery"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:244
+msgid ""
+"OAuth metadata should only exist when the site exposes real OAuth "
+"authorization and protected-resource behavior."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:245
+msgid "A2A Agent Card"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:245
+msgid ""
+"A2A requires an actual agent service. Conversion Agent Discovery only "
+"exposes public read resources in this release."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:246
+msgid "Commerce Metadata"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:246
+msgid ""
+"Payment, checkout, or transaction metadata is intentionally absent unless a "
+"safe commerce flow is implemented."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:252
+msgid "Diagnostics"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:253
+msgid ""
+"Use these generated URLs and commands to validate the public behavior after "
+"saving settings or purging cache."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:257
+msgid "Generated Endpoints"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:270
+msgid "Checklist"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:272
+msgid "Markdown negotiation enabled"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:273
+msgid "Agent Skills v0.2 enabled"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:274
+msgid "WebMCP tools enabled"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:275
+msgid "WPGraphQL detected"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:276
+msgid "Link headers enabled"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:278
+msgid "Manual Validation"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:279
+msgid ""
+"Use the generated endpoints and curl commands below to validate read-only "
+"agent discovery behavior with your preferred tools."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:280
+msgid "curl Commands"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:300
+msgid "GitHub release"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:301
+msgid "by Conversion"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:325
+msgid "URL / status"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:330
+#: admin/class-conversion-agent-discovery-admin.php:396
+msgid "Discovery impact"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:356
+msgid "Site Metadata"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:357
+msgid "Used in discovery"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:359
+msgid ""
+"These fields identify the publisher, canonical site URL, and human contact "
+"handoff used in llms.txt, Agent Skills, and REST context."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:361
+msgid "Publisher name"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:362
+msgid "Publisher URL"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:363
+msgid "Contact URL"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:380
+msgid "WPGraphQL"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:381
+msgid "Not detected"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:383
+msgid ""
+"WPGraphQL is optional. When it is active and this toggle is enabled, "
+"Conversion Agent Discovery advertises the GraphQL endpoint in the API "
+"Catalog."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:386
+msgid "Detected endpoint"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:391
+msgid "Recommendation"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:392
+msgid "Install WPGraphQL from WordPress.org"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:397
+msgid "Optional API discoverability. Not required for WebMCP or Markdown."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:401
+msgid "Advertise when active"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:417
+msgid "AI training"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:418
+msgid "Search"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:419
+msgid "AI input"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:441
+msgid "Exposed public post types"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:450
+msgid ""
+"Only published public content from these types can be returned by REST and "
+"WebMCP tools."
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:550
+msgid "yes"
+msgstr ""
+
+#: admin/class-conversion-agent-discovery-admin.php:551
+msgid "no"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-rest.php:122
+msgid "Missing search query."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-rest.php:153
+msgid "Public content not found."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-rest.php:229
+msgid ""
+"Open the public contact page. Conversion Agent Discovery does not submit "
+"forms automatically."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-rest.php:255
+msgid "Conversion Agent Discovery read tools are disabled."
+msgstr ""
+
+#. translators: %s: site name.
+#: includes/class-conversion-agent-discovery-routes.php:179
+#, php-format
+msgid "Agent-readable overview for %s."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:183
+msgid "Site"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:184
+msgid "Home"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:185
+msgid "Contact"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:186
+msgid "Search example"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:188
+msgid "Agent resources"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:189
+msgid "API catalog"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:190
+#: includes/class-conversion-agent-discovery-routes.php:249
+msgid "Agent skills"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:191
+msgid "Agent skills schema"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:193
+#: includes/class-conversion-agent-discovery-routes.php:261
+msgid "Sitemap"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:195
+msgid "Content signals"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:198
+msgid "Usage"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:199
+msgid ""
+"Public pages support Markdown negotiation with `Accept: text/markdown` when "
+"enabled."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:200
+msgid "Tools and routes are read-only in v1."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:220
+msgid "WordPress REST API"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:225
+msgid "Conversion Agent Discovery read-only REST API"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:232
+msgid "REST API index"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:237
+msgid "Conversion Agent Discovery site context"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:254
+msgid "Agent skills local schema"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:271
+msgid "WPGraphQL endpoint"
+msgstr ""
+
+#. translators: %s: site name.
+#: includes/class-conversion-agent-discovery-routes.php:307
+#, php-format
+msgid "%s Agent Skills"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:311
+msgid "Read-only public skills for discovering and reading site content."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:327
+msgid "Agent Skills Discovery 0.2"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:328
+msgid ""
+"Local schema for the Agent Skills discovery document generated by Conversion "
+"Agent Discovery."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:335
+msgid "Canonical URL for this local schema document."
+msgstr ""
+
+#. translators: %s: site name.
+#: includes/class-conversion-agent-discovery-routes.php:426
+#, php-format
+msgid "Use this skill when an agent needs to work with public content from %s."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:430
+msgid "Behavior"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:431
+msgid "This skill is read-only."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:432
+msgid "Use only public, published content."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:433
+msgid ""
+"Do not submit forms, authenticate, edit content, or perform transactions."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:438
+msgid "Input"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:441
+msgid "Output"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:461
+msgid "Read Site Content"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:462
+msgid "Read public pages and posts from the site as clean Markdown."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:464
+msgid "Provide `id`, `url`, or `slug` for a public post or page."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:465
+msgid "Returns title, URL, excerpt, dates, and Markdown content."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:470
+msgid "Search Site"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:471
+msgid "Search public WordPress content by query string."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:473
+msgid "Provide `query` and optional `per_page`."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:474
+msgid "Returns matching public content summaries."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:479
+msgid "Read Article"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:480
+msgid "Read a public article by URL, slug, or WordPress ID."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:482
+msgid "Provide article `id`, `url`, or `slug`."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:483
+msgid "Returns article metadata and Markdown body."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:488
+msgid "List Recent Posts"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:489
+msgid "List recent public posts and pages exposed by the site."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:491
+msgid "Optionally provide `per_page`, capped at 20."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:492
+msgid "Returns recent public content summaries."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:497
+msgid "Contact Conversion"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:498
+msgid "Open the public contact page without submitting forms automatically."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:500
+msgid "No automated form submission is supported."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-routes.php:501
+msgid ""
+"Returns the public contact URL and requires human confirmation for any form "
+"action."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:49
+msgid "Request failed"
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:54
+msgid "Search public posts and pages on this WordPress site."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:60
+msgid "Search query."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:66
+#: includes/class-conversion-agent-discovery-webmcp.php:110
+msgid "Maximum results to return."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:75
+msgid "Read a public post or page by id, URL, or slug."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:81
+msgid "WordPress post ID."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:86
+msgid "Canonical public URL."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:90
+msgid "Post or page slug."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:94
+msgid "Optional post type, usually post or page."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:102
+msgid "List recent public posts and pages from this WordPress site."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:118
+msgid ""
+"Get public Conversion Agent Discovery context, discovery URLs, and content "
+"policy for this site."
+msgstr ""
+
+#: includes/class-conversion-agent-discovery-webmcp.php:127
+msgid "Get the public contact URL. This tool does not submit forms."
+msgstr ""

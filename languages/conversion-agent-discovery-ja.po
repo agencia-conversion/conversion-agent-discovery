@@ -1,0 +1,468 @@
+# Conversion Agent Discovery translations.
+# Copyright (C) 2026 Conversion
+# This file is distributed under the same license as the Conversion Agent Discovery package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Conversion Agent Discovery 0.1.10\n"
+"Report-Msgid-Bugs-To: https://github.com/agencia-conversion/conversion-agent-discovery/issues\n"
+"POT-Creation-Date: 2026-05-20 00:00-0300\n"
+"PO-Revision-Date: 2026-05-20 00:00-0300\n"
+"Last-Translator: Conversion <contato@conversion.com.br>\n"
+"Language-Team: 日本語 <contato@conversion.com.br>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Conversion Agent Discovery i18n builder\n"
+
+msgid "Conversion Agent Discovery"
+msgstr "Conversion Agent Discovery"
+
+msgid "Conversion"
+msgstr "Conversion"
+
+msgid "Agent discovery for WordPress"
+msgstr "WordPress のエージェント検出"
+
+msgid "Expose public, read-only discovery surfaces for AI agents without publishing fake capabilities."
+msgstr "偽の機能を公開せずに、AI エージェント向けに公開の read-only 検出サーフェスを公開します。"
+
+msgid "Enabled"
+msgstr "有効"
+
+msgid "Disabled"
+msgstr "障害者"
+
+msgid "Core Controls"
+msgstr "コアコントロール"
+
+msgid "The global switch is the fastest rollback path. Turning it off restores the normal WordPress behavior for public requests."
+msgstr "グローバル スイッチは最速のロールバック パスです。これをオフにすると、パブリック リクエストに対する WordPress の通常の動作が復元されます。"
+
+msgid "Global Kill Switch"
+msgstr "グローバルキルスイッチ"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Paused"
+msgstr "一時停止中"
+
+msgid "Controls every Conversion Agent Discovery route, header, REST endpoint, Markdown response, and browser tool."
+msgstr "すべての Conversion Agent Discovery ルート、ヘッダー、REST エンドポイント、Markdown 応答、およびブラウザー ツールを制御します。"
+
+msgid "Rollback and operational safety."
+msgstr "ロールバックと運用上の安全性。"
+
+msgid "Modules"
+msgstr "モジュール"
+
+msgid "Each module maps to a concrete public capability used by agent discovery scanners and AI crawlers."
+msgstr "各モジュールは、エージェント検出スキャナーと AI クローラーによって使用される具体的なパブリック機能にマップされます。"
+
+msgid "Content Signals"
+msgstr "Content Signals"
+
+msgid "Adds an explicit Content-Signal line to robots.txt and Markdown responses."
+msgstr "明示的な Content-Signal 行を robots.txt および Markdown 応答に追加します。"
+
+msgid "Content policy discovery."
+msgstr "コンテンツポリシーの検出。"
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "Publishes /llms.txt and /.well-known/llms.txt with site context and agent resources."
+msgstr "サイト コンテキストとエージェント リソースを含む /llms.txt および /.well-known/llms.txt を公開します。"
+
+msgid "Agent-readable site overview."
+msgstr "エージェントが読み取り可能なサイトの概要。"
+
+msgid "API Catalog"
+msgstr "API Catalog"
+
+msgid "Publishes a linkset catalog pointing to WordPress REST, Conversion Agent Discovery REST, sitemap, llms.txt, Agent Skills, and WPGraphQL when active."
+msgstr "アクティブな場合、WordPress REST、Conversion Agent Discovery REST、サイトマップ、llms.txt、Agent Skills、および WPGraphQL を指すリンクセット カタログを公開します。"
+
+msgid "Structured API discovery."
+msgstr "構造化された API の検出。"
+
+msgid "Agent Skills v0.2"
+msgstr "Agent Skills v0.2"
+
+msgid "Publishes a skills index and virtual SKILL.md files for read-only content discovery, search, article reading, recent posts, and contact handoff."
+msgstr "read-only コンテンツの検出、検索、記事の閲覧、最近の投稿、連絡先の引き継ぎのためのスキル インデックスと仮想 SKILL.md ファイルを公開します。"
+
+msgid "Agent capability discovery."
+msgstr "エージェントの機能の検出。"
+
+msgid "Markdown Negotiation"
+msgstr "Markdown Negotiation"
+
+msgid "Returns clean Markdown with frontmatter only when a public GET or HEAD request asks for Accept: text/markdown."
+msgstr "パブリック GET または HEAD リクエストが Accept: text/markdown を要求した場合にのみ、frontmatter を含むクリーンな Markdown を返します。"
+
+msgid "Content readability and agent parsing quality."
+msgstr "コンテンツの読みやすさとエージェントの解析品質。"
+
+msgid "WebMCP Read-only Tools"
+msgstr "WebMCP 読み取り専用ツール"
+
+msgid "Registers browser tools when navigator.modelContext exists. Tools only search, list, read public content, get context, or return the contact URL."
+msgstr "navigator.modelContext が存在する場合、ブラウザ ツールを登録します。ツールは、公開コンテンツの検索、一覧表示、読み取り、コンテキストの取得、連絡先 URL の返しのみを行います。"
+
+msgid "Browser-agent integration when WebMCP is available."
+msgstr "WebMCP が使用可能な場合のブラウザー エージェントの統合。"
+
+msgid "Save Conversion Agent Discovery Settings"
+msgstr "Conversion Agent Discovery 設定を保存する"
+
+msgid "Protocol Boundaries"
+msgstr "プロトコルの境界"
+
+msgid "These checks stay unpublished until the site has the real service behind them."
+msgstr "これらのチェックは、サイトに実際のサービスが提供されるまで非公開のままです。"
+
+msgid "MCP Server Card"
+msgstr "MCP Server Card"
+
+msgid "Not published"
+msgstr "未公開"
+
+msgid "Conversion Agent Discovery currently implements WebMCP in the browser, not a remote MCP server endpoint with transports, auth, and server capabilities."
+msgstr "Conversion Agent Discovery は現在、トランスポート、認証、およびサーバー機能を備えたリモート MCP サーバー エンドポイントではなく、ブラウザーに WebMCP を実装しています。"
+
+msgid "OAuth Discovery"
+msgstr "OAuth ディスカバリー"
+
+msgid "OAuth metadata should only exist when the site exposes real OAuth authorization and protected-resource behavior."
+msgstr "OAuth メタデータは、サイトが実際の OAuth 承認と保護されたリソースの動作を公開する場合にのみ存在する必要があります。"
+
+msgid "A2A Agent Card"
+msgstr "A2A エージェントカード"
+
+msgid "A2A requires an actual agent service. Conversion Agent Discovery only exposes public read resources in this release."
+msgstr "A2A には実際のエージェント サービスが必要です。 Conversion Agent Discovery は、このリリースではパブリック読み取りリソースのみを公開します。"
+
+msgid "Commerce Metadata"
+msgstr "コマースメタデータ"
+
+msgid "Payment, checkout, or transaction metadata is intentionally absent unless a safe commerce flow is implemented."
+msgstr "安全な商取引フローが実装されていない限り、支払い、チェックアウト、またはトランザクションのメタデータは意図的に存在しません。"
+
+msgid "Diagnostics"
+msgstr "診断"
+
+msgid "Use these generated URLs and commands to validate the public behavior after saving settings or purging cache."
+msgstr "これらの生成された URL とコマンドを使用して、設定の保存またはキャッシュの削除後のパブリック動作を検証します。"
+
+msgid "Generated Endpoints"
+msgstr "生成されたエンドポイント"
+
+msgid "Checklist"
+msgstr "チェックリスト"
+
+msgid "Markdown negotiation enabled"
+msgstr "マークダウンネゴシエーションが有効になっています"
+
+msgid "Agent Skills v0.2 enabled"
+msgstr "Agent Skills v0.2 が有効になりました"
+
+msgid "WebMCP tools enabled"
+msgstr "WebMCP ツールが有効になりました"
+
+msgid "WPGraphQL detected"
+msgstr "WPGraphQL が検出されました"
+
+msgid "Link headers enabled"
+msgstr "リンクヘッダーが有効になっています"
+
+msgid "Manual Validation"
+msgstr "手動検証"
+
+msgid "Use the generated endpoints and curl commands below to validate read-only agent discovery behavior with your preferred tools."
+msgstr "以下の生成されたエンドポイントとカール コマンドを使用して、好みのツールで read-only エージェントの検出動作を検証します。"
+
+msgid "curl Commands"
+msgstr "カールコマンド"
+
+msgid "GitHub release"
+msgstr "GitHub リリース"
+
+msgid "by Conversion"
+msgstr "変換による"
+
+msgid "URL / status"
+msgstr "URL/ステータス"
+
+msgid "Discovery impact"
+msgstr "発見への影響"
+
+msgid "Site Metadata"
+msgstr "サイトのメタデータ"
+
+msgid "Used in discovery"
+msgstr "発見で使用される"
+
+msgid "These fields identify the publisher, canonical site URL, and human contact handoff used in llms.txt, Agent Skills, and REST context."
+msgstr "これらのフィールドは、llms.txt、Agent Skills、および REST コンテキストで使用される発行者、正規サイト URL、および人間の連絡先のハンドオフを識別します。"
+
+msgid "Publisher name"
+msgstr "出版社名"
+
+msgid "Publisher URL"
+msgstr "発行者のURL"
+
+msgid "Contact URL"
+msgstr "連絡先URL"
+
+msgid "WPGraphQL"
+msgstr "WPGraphQL"
+
+msgid "Not detected"
+msgstr "検出されませんでした"
+
+msgid "WPGraphQL is optional. When it is active and this toggle is enabled, Conversion Agent Discovery advertises the GraphQL endpoint in the API Catalog."
+msgstr "WPGraphQL はオプションです。これがアクティブで、このトグルが有効になっている場合、Conversion Agent Discovery は API Catalog で GraphQL エンドポイントをアドバタイズします。"
+
+msgid "Detected endpoint"
+msgstr "検出されたエンドポイント"
+
+msgid "Recommendation"
+msgstr "おすすめ"
+
+msgid "Install WPGraphQL from WordPress.org"
+msgstr "WordPress.org から WPGraphQL をインストールします"
+
+msgid "Optional API discoverability. Not required for WebMCP or Markdown."
+msgstr "オプションの API 検出可能性。 WebMCP または Markdown には必要ありません。"
+
+msgid "Advertise when active"
+msgstr "アクティブ時に宣伝する"
+
+msgid "AI training"
+msgstr "AIトレーニング"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "AI input"
+msgstr "AI入力"
+
+msgid "Exposed public post types"
+msgstr "公開された公開投稿タイプ"
+
+msgid "Only published public content from these types can be returned by REST and WebMCP tools."
+msgstr "REST および WebMCP ツールによって返されるのは、これらのタイプの公開されたパブリック コンテンツのみです。"
+
+msgid "yes"
+msgstr "はい"
+
+msgid "no"
+msgstr "いいえ"
+
+msgid "Missing search query."
+msgstr "検索クエリがありません。"
+
+msgid "Public content not found."
+msgstr "公開コンテンツが見つかりません。"
+
+msgid "Open the public contact page. Conversion Agent Discovery does not submit forms automatically."
+msgstr "公開連絡先ページを開きます。 Conversion Agent Discovery はフォームを自動的に送信しません。"
+
+msgid "Conversion Agent Discovery read tools are disabled."
+msgstr "Conversion Agent Discovery 読み取りツールは無効になっています。"
+
+msgid "Agent-readable overview for %s."
+msgstr "エージェントが読み取り可能な %s の概要。"
+
+msgid "Site"
+msgstr "サイト"
+
+msgid "Home"
+msgstr "家"
+
+msgid "Contact"
+msgstr "接触"
+
+msgid "Search example"
+msgstr "検索例"
+
+msgid "Agent resources"
+msgstr "エージェントのリソース"
+
+msgid "API catalog"
+msgstr "APIカタログ"
+
+msgid "Agent skills"
+msgstr "エージェントのスキル"
+
+msgid "Agent skills schema"
+msgstr "エージェントのスキルスキーマ"
+
+msgid "Sitemap"
+msgstr "サイトマップ"
+
+msgid "Content signals"
+msgstr "コンテンツ信号"
+
+msgid "Usage"
+msgstr "使用法"
+
+msgid "Public pages support Markdown negotiation with `Accept: text/markdown` when enabled."
+msgstr "パブリック ページは、有効な場合、`Accept: text/markdown` とのマークダウン ネゴシエーションをサポートします。"
+
+msgid "Tools and routes are read-only in v1."
+msgstr "ツールとルートは v1 の read-only です。"
+
+msgid "WordPress REST API"
+msgstr "WordPress REST API"
+
+msgid "Conversion Agent Discovery read-only REST API"
+msgstr "Conversion Agent Discovery read-only REST API"
+
+msgid "REST API index"
+msgstr "REST API インデックス"
+
+msgid "Conversion Agent Discovery site context"
+msgstr "Conversion Agent Discovery サイトコンテキスト"
+
+msgid "Agent skills local schema"
+msgstr "エージェント スキルのローカル スキーマ"
+
+msgid "WPGraphQL endpoint"
+msgstr "WPGraphQL エンドポイント"
+
+msgid "%s Agent Skills"
+msgstr "%s Agent Skills"
+
+msgid "Read-only public skills for discovering and reading site content."
+msgstr "サイトのコンテンツを見つけて読むための読み取り専用の公開スキル。"
+
+msgid "Agent Skills Discovery 0.2"
+msgstr "Agent Skills Discovery 0.2"
+
+msgid "Local schema for the Agent Skills discovery document generated by Conversion Agent Discovery."
+msgstr "Conversion Agent Discovery によって生成された Agent Skills 検出ドキュメントのローカル スキーマ。"
+
+msgid "Canonical URL for this local schema document."
+msgstr "このローカル スキーマ ドキュメントの正規 URL。"
+
+msgid "Use this skill when an agent needs to work with public content from %s."
+msgstr "エージェントが %s のパブリック コンテンツを操作する必要がある場合は、このスキルを使用します。"
+
+msgid "Behavior"
+msgstr "行動"
+
+msgid "This skill is read-only."
+msgstr "このスキルはread-onlyです。"
+
+msgid "Use only public, published content."
+msgstr "公開された公開コンテンツのみを使用してください。"
+
+msgid "Do not submit forms, authenticate, edit content, or perform transactions."
+msgstr "フォームの送信、認証、コンテンツの編集、またはトランザクションの実行は行わないでください。"
+
+msgid "Input"
+msgstr "入力"
+
+msgid "Output"
+msgstr "出力"
+
+msgid "Read Site Content"
+msgstr "サイトコンテンツを読む"
+
+msgid "Read public pages and posts from the site as clean Markdown."
+msgstr "公開ページとサイトの投稿をクリーンな Markdown として読み取ります。"
+
+msgid "Provide `id`, `url`, or `slug` for a public post or page."
+msgstr "公開投稿またはページには、`id`、`url`、または `slug` を指定します。"
+
+msgid "Returns title, URL, excerpt, dates, and Markdown content."
+msgstr "タイトル、URL、抜粋、日付、マークダウン コンテンツを返します。"
+
+msgid "Search Site"
+msgstr "検索サイト"
+
+msgid "Search public WordPress content by query string."
+msgstr "パブリック WordPress コンテンツをクエリ文字列で検索します。"
+
+msgid "Provide `query` and optional `per_page`."
+msgstr "`query` とオプションの `per_page` を指定します。"
+
+msgid "Returns matching public content summaries."
+msgstr "一致するパブリック コンテンツの概要を返します。"
+
+msgid "Read Article"
+msgstr "記事を読む"
+
+msgid "Read a public article by URL, slug, or WordPress ID."
+msgstr "URL、スラッグ、または WordPress ID で公開記事を読みます。"
+
+msgid "Provide article `id`, `url`, or `slug`."
+msgstr "記事 `id`、`url`、または `slug` を指定してください。"
+
+msgid "Returns article metadata and Markdown body."
+msgstr "記事のメタデータとマークダウン本文を返します。"
+
+msgid "List Recent Posts"
+msgstr "最近の投稿を一覧表示する"
+
+msgid "List recent public posts and pages exposed by the site."
+msgstr "サイトによって公開された最近の公開投稿とページをリストします。"
+
+msgid "Optionally provide `per_page`, capped at 20."
+msgstr "オプションで、`per_page` を指定します (上限は 20)。"
+
+msgid "Returns recent public content summaries."
+msgstr "最近の公開コンテンツの概要を返します。"
+
+msgid "Contact Conversion"
+msgstr "連絡先の変換"
+
+msgid "Open the public contact page without submitting forms automatically."
+msgstr "フォームを自動的に送信せずに、公開連絡先ページを開きます。"
+
+msgid "No automated form submission is supported."
+msgstr "自動フォーム送信はサポートされていません。"
+
+msgid "Returns the public contact URL and requires human confirmation for any form action."
+msgstr "パブリック連絡先 URL を返し、フォーム操作に対して人間による確認を必要とします。"
+
+msgid "Request failed"
+msgstr "リクエストが失敗しました"
+
+msgid "Search public posts and pages on this WordPress site."
+msgstr "この WordPress サイト上の公開投稿とページを検索します。"
+
+msgid "Search query."
+msgstr "検索クエリ。"
+
+msgid "Maximum results to return."
+msgstr "返される最大の結果。"
+
+msgid "Read a public post or page by id, URL, or slug."
+msgstr "ID、URL、またはスラッグによって公開投稿またはページを読み取ります。"
+
+msgid "WordPress post ID."
+msgstr "WordPress の投稿 ID。"
+
+msgid "Canonical public URL."
+msgstr "正規のパブリック URL。"
+
+msgid "Post or page slug."
+msgstr "投稿またはページのスラッグ。"
+
+msgid "Optional post type, usually post or page."
+msgstr "オプションの投稿タイプ。通常は投稿またはページです。"
+
+msgid "List recent public posts and pages from this WordPress site."
+msgstr "この WordPress サイトの最近の公開投稿とページを一覧表示します。"
+
+msgid "Get public Conversion Agent Discovery context, discovery URLs, and content policy for this site."
+msgstr "このサイトのパブリック Conversion Agent Discovery コンテキスト、検出 URL、およびコンテンツ ポリシーを取得します。"
+
+msgid "Get the public contact URL. This tool does not submit forms."
+msgstr "公開連絡先 URL を取得します。このツールはフォームを送信しません。"

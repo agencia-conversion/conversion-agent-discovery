@@ -1,0 +1,468 @@
+# Conversion Agent Discovery translations.
+# Copyright (C) 2026 Conversion
+# This file is distributed under the same license as the Conversion Agent Discovery package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Conversion Agent Discovery 0.1.10\n"
+"Report-Msgid-Bugs-To: https://github.com/agencia-conversion/conversion-agent-discovery/issues\n"
+"POT-Creation-Date: 2026-05-20 00:00-0300\n"
+"PO-Revision-Date: 2026-05-20 00:00-0300\n"
+"Last-Translator: Conversion <contato@conversion.com.br>\n"
+"Language-Team: 简体中文 <contato@conversion.com.br>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Conversion Agent Discovery i18n builder\n"
+
+msgid "Conversion Agent Discovery"
+msgstr "Conversion Agent Discovery"
+
+msgid "Conversion"
+msgstr "Conversion"
+
+msgid "Agent discovery for WordPress"
+msgstr "WordPress 代理发现"
+
+msgid "Expose public, read-only discovery surfaces for AI agents without publishing fake capabilities."
+msgstr "为 AI 代理公开 read-only 发现表面，而无需发布虚假功能。"
+
+msgid "Enabled"
+msgstr "启用"
+
+msgid "Disabled"
+msgstr "残疾人"
+
+msgid "Core Controls"
+msgstr "核心控制"
+
+msgid "The global switch is the fastest rollback path. Turning it off restores the normal WordPress behavior for public requests."
+msgstr "全局切换是最快的回滚路径。关闭它会恢复 WordPress 针对公共请求的正常行为。"
+
+msgid "Global Kill Switch"
+msgstr "全局终止开关"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Paused"
+msgstr "已暂停"
+
+msgid "Controls every Conversion Agent Discovery route, header, REST endpoint, Markdown response, and browser tool."
+msgstr "控制每个 Conversion Agent Discovery 路由、标头、REST 端点、Markdown 响应和浏览器工具。"
+
+msgid "Rollback and operational safety."
+msgstr "回滚和操作安全。"
+
+msgid "Modules"
+msgstr "模块"
+
+msgid "Each module maps to a concrete public capability used by agent discovery scanners and AI crawlers."
+msgstr "每个模块都映射到代理发现扫描器和人工智能爬虫使用的具体公共功能。"
+
+msgid "Content Signals"
+msgstr "Content Signals"
+
+msgid "Adds an explicit Content-Signal line to robots.txt and Markdown responses."
+msgstr "将显式 Content-Signal 行添加到 robots.txt 和 Markdown 响应。"
+
+msgid "Content policy discovery."
+msgstr "内容策略发现。"
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "Publishes /llms.txt and /.well-known/llms.txt with site context and agent resources."
+msgstr "发布 /llms.txt 和 /.well-known/llms.txt 以及站点上下文和代理资源。"
+
+msgid "Agent-readable site overview."
+msgstr "代理可读的站点概述。"
+
+msgid "API Catalog"
+msgstr "API Catalog"
+
+msgid "Publishes a linkset catalog pointing to WordPress REST, Conversion Agent Discovery REST, sitemap, llms.txt, Agent Skills, and WPGraphQL when active."
+msgstr "激活时发布指向 WordPress REST、Conversion Agent Discovery REST、站点地图、llms.txt、Agent Skills 和 WPGraphQL 的链接集目录。"
+
+msgid "Structured API discovery."
+msgstr "结构化 API 发现。"
+
+msgid "Agent Skills v0.2"
+msgstr "Agent Skills v0.2"
+
+msgid "Publishes a skills index and virtual SKILL.md files for read-only content discovery, search, article reading, recent posts, and contact handoff."
+msgstr "发布技能索引和虚拟 SKILL.md 文件，用于 read-only 内容发现、搜索、文章阅读、最近帖子和联系人切换。"
+
+msgid "Agent capability discovery."
+msgstr "代理能力发现。"
+
+msgid "Markdown Negotiation"
+msgstr "Markdown Negotiation"
+
+msgid "Returns clean Markdown with frontmatter only when a public GET or HEAD request asks for Accept: text/markdown."
+msgstr "仅当公共 GET 或 HEAD 请求要求接受：text/markdown 时，才返回带有 frontmatter 的干净 Markdown。"
+
+msgid "Content readability and agent parsing quality."
+msgstr "内容可读性和代理解析质量。"
+
+msgid "WebMCP Read-only Tools"
+msgstr "WebMCP 只读工具"
+
+msgid "Registers browser tools when navigator.modelContext exists. Tools only search, list, read public content, get context, or return the contact URL."
+msgstr "当 navigator.modelContext 存在时注册浏览器工具。工具仅搜索、列出、读取公共内容、获取上下文或返回联系人 URL。"
+
+msgid "Browser-agent integration when WebMCP is available."
+msgstr "当 WebMCP 可用时，浏览器代理集成。"
+
+msgid "Save Conversion Agent Discovery Settings"
+msgstr "保存 Conversion Agent Discovery 设置"
+
+msgid "Protocol Boundaries"
+msgstr "协议边界"
+
+msgid "These checks stay unpublished until the site has the real service behind them."
+msgstr "这些检查在网站提供真正的服务之前不会发布。"
+
+msgid "MCP Server Card"
+msgstr "MCP Server Card"
+
+msgid "Not published"
+msgstr "未发表"
+
+msgid "Conversion Agent Discovery currently implements WebMCP in the browser, not a remote MCP server endpoint with transports, auth, and server capabilities."
+msgstr "Conversion Agent Discovery 当前在浏览器中实现 WebMCP，而不是具有传输、身份验证和服务器功能的远程 MCP 服务器端点。"
+
+msgid "OAuth Discovery"
+msgstr "OAuth 发现"
+
+msgid "OAuth metadata should only exist when the site exposes real OAuth authorization and protected-resource behavior."
+msgstr "OAuth 元数据仅应在站点公开真实的 OAuth 授权和受保护资源行为时存在。"
+
+msgid "A2A Agent Card"
+msgstr "A2A代理卡"
+
+msgid "A2A requires an actual agent service. Conversion Agent Discovery only exposes public read resources in this release."
+msgstr "A2A需要实际的代理服务。 Conversion Agent Discovery在此版本中仅公开公共读取资源。"
+
+msgid "Commerce Metadata"
+msgstr "商务元数据"
+
+msgid "Payment, checkout, or transaction metadata is intentionally absent unless a safe commerce flow is implemented."
+msgstr "除非实现安全的商务流程，否则故意不存在付款、结账或交易元数据。"
+
+msgid "Diagnostics"
+msgstr "诊断"
+
+msgid "Use these generated URLs and commands to validate the public behavior after saving settings or purging cache."
+msgstr "保存设置或清除缓存后，使用这些生成的 URL 和命令来验证公共行为。"
+
+msgid "Generated Endpoints"
+msgstr "生成的端点"
+
+msgid "Checklist"
+msgstr "清单"
+
+msgid "Markdown negotiation enabled"
+msgstr "启用 Markdown 协商"
+
+msgid "Agent Skills v0.2 enabled"
+msgstr "Agent Skills v0.2 已启用"
+
+msgid "WebMCP tools enabled"
+msgstr "WebMCP 工具已启用"
+
+msgid "WPGraphQL detected"
+msgstr "检测到 WPGraphQL"
+
+msgid "Link headers enabled"
+msgstr "已启用链接标头"
+
+msgid "Manual Validation"
+msgstr "手动验证"
+
+msgid "Use the generated endpoints and curl commands below to validate read-only agent discovery behavior with your preferred tools."
+msgstr "使用下面生成的端点和curl命令通过您的首选工具验证read-only代理发现行为。"
+
+msgid "curl Commands"
+msgstr "卷曲命令"
+
+msgid "GitHub release"
+msgstr "GitHub 发布"
+
+msgid "by Conversion"
+msgstr "通过转换"
+
+msgid "URL / status"
+msgstr "网址/状态"
+
+msgid "Discovery impact"
+msgstr "发现影响"
+
+msgid "Site Metadata"
+msgstr "站点元数据"
+
+msgid "Used in discovery"
+msgstr "用于发现"
+
+msgid "These fields identify the publisher, canonical site URL, and human contact handoff used in llms.txt, Agent Skills, and REST context."
+msgstr "这些字段标识 llms.txt、Agent Skills 和 REST 上下文中使用的发布者、规范站点 URL 和人工联系切换。"
+
+msgid "Publisher name"
+msgstr "出版商名称"
+
+msgid "Publisher URL"
+msgstr "发布者网址"
+
+msgid "Contact URL"
+msgstr "联系网址"
+
+msgid "WPGraphQL"
+msgstr "WPGraphQL"
+
+msgid "Not detected"
+msgstr "未检测到"
+
+msgid "WPGraphQL is optional. When it is active and this toggle is enabled, Conversion Agent Discovery advertises the GraphQL endpoint in the API Catalog."
+msgstr "WPGraphQL 是可选的。当它处于活动状态并且启用此切换时，Conversion Agent Discovery 会在 API Catalog 中通告 GraphQL 端点。"
+
+msgid "Detected endpoint"
+msgstr "检测到的端点"
+
+msgid "Recommendation"
+msgstr "推荐"
+
+msgid "Install WPGraphQL from WordPress.org"
+msgstr "从 WordPress.org 安装 WPGraphQL"
+
+msgid "Optional API discoverability. Not required for WebMCP or Markdown."
+msgstr "可选的 API 可发现性。 WebMCP 或 Markdown 不需要。"
+
+msgid "Advertise when active"
+msgstr "活跃时做广告"
+
+msgid "AI training"
+msgstr "人工智能培训"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "AI input"
+msgstr "人工智能输入"
+
+msgid "Exposed public post types"
+msgstr "公开的公共帖子类型"
+
+msgid "Only published public content from these types can be returned by REST and WebMCP tools."
+msgstr "REST 和 WebMCP 工具只能返回这些类型的已发布公共内容。"
+
+msgid "yes"
+msgstr "是的"
+
+msgid "no"
+msgstr "不"
+
+msgid "Missing search query."
+msgstr "缺少搜索查询。"
+
+msgid "Public content not found."
+msgstr "未找到公开内容。"
+
+msgid "Open the public contact page. Conversion Agent Discovery does not submit forms automatically."
+msgstr "打开公共联系页面。 Conversion Agent Discovery 不会自动提交表单。"
+
+msgid "Conversion Agent Discovery read tools are disabled."
+msgstr "Conversion Agent Discovery 读取工具被禁用。"
+
+msgid "Agent-readable overview for %s."
+msgstr "%s 的代理可读概述。"
+
+msgid "Site"
+msgstr "地点"
+
+msgid "Home"
+msgstr "家"
+
+msgid "Contact"
+msgstr "接触"
+
+msgid "Search example"
+msgstr "搜索示例"
+
+msgid "Agent resources"
+msgstr "代理资源"
+
+msgid "API catalog"
+msgstr "原料药目录"
+
+msgid "Agent skills"
+msgstr "代理技巧"
+
+msgid "Agent skills schema"
+msgstr "座席技能架构"
+
+msgid "Sitemap"
+msgstr "网站地图"
+
+msgid "Content signals"
+msgstr "内容信号"
+
+msgid "Usage"
+msgstr "用法"
+
+msgid "Public pages support Markdown negotiation with `Accept: text/markdown` when enabled."
+msgstr "启用后，公共页面支持与 `Accept: text/markdown` 进行 Markdown 协商。"
+
+msgid "Tools and routes are read-only in v1."
+msgstr "工具和路线是v1中的read-only。"
+
+msgid "WordPress REST API"
+msgstr "WordPress REST API"
+
+msgid "Conversion Agent Discovery read-only REST API"
+msgstr "Conversion Agent Discovery read-only REST API"
+
+msgid "REST API index"
+msgstr "REST API索引"
+
+msgid "Conversion Agent Discovery site context"
+msgstr "Conversion Agent Discovery 站点上下文"
+
+msgid "Agent skills local schema"
+msgstr "座席技能本地架构"
+
+msgid "WPGraphQL endpoint"
+msgstr "WPGraphQL 端点"
+
+msgid "%s Agent Skills"
+msgstr "%s Agent Skills"
+
+msgid "Read-only public skills for discovering and reading site content."
+msgstr "用于发现和阅读网站内容的只读公共技能。"
+
+msgid "Agent Skills Discovery 0.2"
+msgstr "Agent Skills Discovery 0.2"
+
+msgid "Local schema for the Agent Skills discovery document generated by Conversion Agent Discovery."
+msgstr "Conversion Agent Discovery 生成的 Agent Skills 发现文档的本地架构。"
+
+msgid "Canonical URL for this local schema document."
+msgstr "此本地架构文档的规范 URL。"
+
+msgid "Use this skill when an agent needs to work with public content from %s."
+msgstr "当客服人员需要使用 %s 的公共内容时，请使用此技能。"
+
+msgid "Behavior"
+msgstr "行为"
+
+msgid "This skill is read-only."
+msgstr "这个技能是read-only。"
+
+msgid "Use only public, published content."
+msgstr "仅使用公开发布的内容。"
+
+msgid "Do not submit forms, authenticate, edit content, or perform transactions."
+msgstr "请勿提交表单、验证、编辑内容或执行交易。"
+
+msgid "Input"
+msgstr "输入"
+
+msgid "Output"
+msgstr "输出"
+
+msgid "Read Site Content"
+msgstr "阅读网站内容"
+
+msgid "Read public pages and posts from the site as clean Markdown."
+msgstr "以干净的 Markdown 形式阅读该网站的公共页面和帖子。"
+
+msgid "Provide `id`, `url`, or `slug` for a public post or page."
+msgstr "为公共帖子或页面提供 `id`、`url` 或 `slug`。"
+
+msgid "Returns title, URL, excerpt, dates, and Markdown content."
+msgstr "返回标题、URL、摘录、日期和 Markdown 内容。"
+
+msgid "Search Site"
+msgstr "搜索网站"
+
+msgid "Search public WordPress content by query string."
+msgstr "通过查询字符串搜索公共 WordPress 内容。"
+
+msgid "Provide `query` and optional `per_page`."
+msgstr "提供`query`和可选的`per_page`。"
+
+msgid "Returns matching public content summaries."
+msgstr "返回匹配的公共内容摘要。"
+
+msgid "Read Article"
+msgstr "阅读文章"
+
+msgid "Read a public article by URL, slug, or WordPress ID."
+msgstr "通过 URL、slug 或 WordPress ID 阅读公开文章。"
+
+msgid "Provide article `id`, `url`, or `slug`."
+msgstr "提供文章 `id`、`url` 或 `slug`。"
+
+msgid "Returns article metadata and Markdown body."
+msgstr "返回文章元数据和 Markdown 正文。"
+
+msgid "List Recent Posts"
+msgstr "列出最近的帖子"
+
+msgid "List recent public posts and pages exposed by the site."
+msgstr "列出该网站最近公开的帖子和页面。"
+
+msgid "Optionally provide `per_page`, capped at 20."
+msgstr "可选择提供 `per_page`，上限为 20。"
+
+msgid "Returns recent public content summaries."
+msgstr "返回最近的公开内容摘要。"
+
+msgid "Contact Conversion"
+msgstr "联系方式转换"
+
+msgid "Open the public contact page without submitting forms automatically."
+msgstr "打开公共联系页面，不自动提交表单。"
+
+msgid "No automated form submission is supported."
+msgstr "不支持自动表单提交。"
+
+msgid "Returns the public contact URL and requires human confirmation for any form action."
+msgstr "返回公共联系 URL，并需要人工确认任何表单操作。"
+
+msgid "Request failed"
+msgstr "请求失败"
+
+msgid "Search public posts and pages on this WordPress site."
+msgstr "在此 WordPress 网站上搜索公共帖子和页面。"
+
+msgid "Search query."
+msgstr "搜索查询。"
+
+msgid "Maximum results to return."
+msgstr "返回的最大结果。"
+
+msgid "Read a public post or page by id, URL, or slug."
+msgstr "通过 ID、URL 或 slug 阅读公共帖子或页面。"
+
+msgid "WordPress post ID."
+msgstr "WordPress 帖子 ID。"
+
+msgid "Canonical public URL."
+msgstr "规范的公共 URL。"
+
+msgid "Post or page slug."
+msgstr "帖子或页面标题。"
+
+msgid "Optional post type, usually post or page."
+msgstr "可选的帖子类型，通常是帖子或页面。"
+
+msgid "List recent public posts and pages from this WordPress site."
+msgstr "列出此 WordPress 网站最近的公开帖子和页面。"
+
+msgid "Get public Conversion Agent Discovery context, discovery URLs, and content policy for this site."
+msgstr "获取此站点的公共 Conversion Agent Discovery 上下文、发现 URL 和内容策略。"
+
+msgid "Get the public contact URL. This tool does not submit forms."
+msgstr "获取公共联系 URL。该工具不提交表单。"

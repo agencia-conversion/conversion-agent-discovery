@@ -1,0 +1,52 @@
+readme.txt
+  s_790caaf690ddbf::t_a8b4a985cfe4d3 7,75-78
+includes/class-conversion-agent-discovery-rest.php
+  s_790caaf690ddbf::t_7cc7ccd31ed916 229
+conversion-agent-discovery.php
+  s_790caaf690ddbf::t_895d2c6562536a 6
+  s_790caaf690ddbf::t_bda125d1e037e6 14,23
+includes/class-conversion-agent-discovery-webmcp.php
+  s_790caaf690ddbf::t_95c8a049f65661 48-134
+includes/class-conversion-agent-discovery-routes.php
+  s_790caaf690ddbf::t_7cc7ccd31ed916 177-181,183-186,188-191,193,195,198-200,220,225,232,237,249,254,261,271,305-309,311,327-328,335,424-428,430-433,438,441,461-462,464-465,470-471,473-474,479-480,482-483,488-489,491-492,497-498,500-501
+tools/make-i18n.py
+  s_790caaf690ddbf::t_895d2c6562536a 36-37,194-200
+  s_790caaf690ddbf::t_24de75e1cb6a7e 58-59,225-256,259-266,272-290,326,361
+  s_790caaf690ddbf::t_e14e07c64faedb 176-182,184-187,189-192
+  s_790caaf690ddbf::t_798d7887dc3952 188
+  s_790caaf690ddbf::t_19d76e24e1c788 295-296
+  s_790caaf690ddbf::t_afc5d78d2a5996 1-35,38-57,60-175,183,193,201-224,257-258,267-271,291-294,297-325,327-360
+assets/webmcp.js
+  s_790caaf690ddbf::t_7cc7ccd31ed916 33
+  s_790caaf690ddbf::t_95c8a049f65661 38-39,41,44-45
+tests/run.php
+  s_790caaf690ddbf::t_bda125d1e037e6 3,72-78,226-227
+  s_790caaf690ddbf::t_fdb5d3dd34a40b 5,156,158
+  s_790caaf690ddbf::t_397852885e8a66 70-71
+  s_790caaf690ddbf::t_55dafa018ad15c 6,62-69
+composer.json
+  s_790caaf690ddbf::t_bda125d1e037e6 3
+includes/class-conversion-agent-discovery.php
+  s_790caaf690ddbf::t_bda125d1e037e6 25,35-37,39-40
+  s_790caaf690ddbf::t_55dafa018ad15c 41-47
+  s_790caaf690ddbf::t_397852885e8a66 48
+  s_790caaf690ddbf::t_99bd15545b708d 38
+tools/make-i18n.sh
+  s_790caaf690ddbf::t_afc5d78d2a5996 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.10",
+  "base_commit_sha": "dd96c4a8a44613e258d16138a43551c379a05b3d",
+  "prompts": {},
+  "sessions": {
+    "s_790caaf690ddbf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e3120-4f5f-7d72-a7fb-aa7bd2f27f39",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Diego Ivo <diego@conversion.com.br>"
+    }
+  }
+}
